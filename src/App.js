@@ -1,12 +1,15 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./app.css"
-import Home from "./Home";
+import Header from "./Header";
 
 function App() {
 
   return (
     <>
-     <Home/>
+    <BrowserRouter>
+      <Header/>
+    </BrowserRouter>  
     </>
   );
 }

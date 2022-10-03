@@ -1,28 +1,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+:root {
+    --dark: #100720;
+    --light: #643baa ;
+  }
 
 
 body{
-    background-color: #100720;
-    color: white;
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
 }
 
-div{
-    font-family: 'Bowlby One Sc', cursive;
-    text-align: center;
-    font-size: 5rem;
-}
-
-button{
-    background-color: white;
-    font-size: 2rem;
-    padding: 20px;
-    cursor: pointer;
-    margin-top: 90px;
-    border: none;
-}
-
-button:hover{
-    background-color: #5c3796;
-    color: white;
+.link{
+    text-decoration: none;
 }

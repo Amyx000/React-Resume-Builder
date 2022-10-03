@@ -1,0 +1,29 @@
+
+.input-main{
+    margin: 50px 10vw;
+    border: 2px solid var(--light);
+    height: 100vh;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 50vw;
+    margin: 30px auto;
+    gap: 10px;
+}
+
+input{
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+input[type="submit"]{
+    cursor: pointer;
+}
+
+.input-err{
+    color: red;
+    font-size: 13px;
+}
