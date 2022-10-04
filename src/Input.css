@@ -2,28 +2,53 @@
 .input-main{
     margin: 50px 10vw;
     border: 2px solid var(--light);
-    height: 100vh;
 }
 
-form{
+.input-form{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 50vw;
     margin: 30px auto;
     gap: 10px;
 }
+.input-form>div{
+    grid-column: 1/3;
+    color: var(--light);
+    text-align: center;
+}
 
-input{
+.input-form>input{
     border: 1px solid var(--light);
     border-radius: 5px;
     padding: 10px;
+    outline-color: var(--light);
 }
 
-input[type="submit"]{
+.input-form>input[type="submit"]{
     cursor: pointer;
+    grid-column: 1/3;
+}
+
+.input-form>input[type="email"]{
+    grid-column: 1/3;
+}
+.singlefield{
+    grid-column: 1/3;
 }
 
 .input-err{
     color: red;
     font-size: 13px;
+}
+
+.year>input{
+    border: none;
+    border-bottom: 1px solid var(--light);
+    margin: 10px;
+    border-radius: 3px;
+    outline: none;
+    outline-color: var(--light);
+}
+.year>input::placeholder{
+    text-align: center;
 }
