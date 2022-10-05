@@ -36,6 +36,7 @@
     border-radius: 5px;
     padding: 10px;
     outline-color: var(--light);
+    box-sizing: border-box;
 }
 
 .input-form>input[type="submit"]{
@@ -127,4 +128,37 @@
 .input-remove-icon{
     color:var(--light);
     font-size: 18px;
+}
+
+.input-index{
+    text-align: left !important;
+    font-size: 13px;
+}
+
+.input-interest{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px,1fr));
+    gap: 5px;
+    justify-content: center;
+}
+
+.input-interest>div>input{
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    padding: 10px;
+    outline-color: var(--light);
+}
+
+.input-interest>div{
+    position: relative;
+}
+
+.interest-cls-icon{
+    font-size: 17px;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    cursor: pointer;
 }
