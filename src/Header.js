@@ -3,6 +3,7 @@ import {Link, Route, Routes } from 'react-router-dom'
 import "./Header.css"
 import Home from './Home'
 import Input from './Input'
+import Selecttheme from './Selecttheme'
 
 function Header() {
     
@@ -23,6 +24,7 @@ function Header() {
             <Routes>
                 <Route path='/' element={<Home/>}/>
                 <Route path='/resumebuild' element={<Input/>}/>
+                <Route path='/selecttheme' element={<Selecttheme/>}/>
             </Routes>
     </>
   )

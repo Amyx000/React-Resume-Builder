@@ -122,6 +122,8 @@
 }
 
 .contact>div:nth-child(2){
+    display: flex;
+    justify-content: center;
     padding: 20px;
 }
 

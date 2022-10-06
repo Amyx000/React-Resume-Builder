@@ -1,0 +1,115 @@
+
+.resume{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 10px;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.sec1{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+}
+
+
+.resume-img{
+   max-width:100%;
+    max-height: 200px;
+    border-radius: 15px;
+}
+
+.resume-color{
+    color: rgb(82, 165, 137);
+}
+
+.resume-head{
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom: 2px solid;
+}
+
+.resume-list{
+    padding-top: 10px;
+}
+
+.sec2-first{
+    padding: 20px;
+}
+
+
+.sec2-first>div:nth-child(2){
+    border-bottom: 2px solid;
+    width: max-content;
+    margin-bottom: 10px;
+}
+
+/* .sec2{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+} */
+
+.r-padding>div{
+    padding-top: 10px;
+}
+
+.resume-content-head{
+    padding-top: 20px !important;
+    padding-left: 20px;
+}
+
+.resume-des{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.r-padding>div:nth-child(2){
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    padding-left: 20px;
+}
+
+.resume-courses{
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.resume-courses>div:nth-child(2){
+    color: gray;
+    font-size: 13px;
+}
+
+.sec2-last-main{
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.sec2-last-main>div:nth-child(3){
+    display: flex;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+
+.resume-subhead{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.resume-title{
+    font-size: 14px;
+}
+
+.ratebar{
+    height: 10px;
+    width: 100%;
+    border: 1px solid;
+}
+.ratebar>div{
+    height: 100%;
+    border: 1px solid ;
+}
