@@ -113,3 +113,10 @@
     height: 100%;
     border: 1px solid ;
 }
+
+.resume-proj{
+    padding-left: 20px;
+}
+.project{
+    padding-left: 0 !important;
+}

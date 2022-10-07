@@ -38,6 +38,9 @@
     outline-color: var(--light);
     box-sizing: border-box;
 }
+input::placeholder{
+    font-size: 13px;
+}
 
 .input-form>input[type="submit"]{
     cursor: pointer;
@@ -49,7 +52,7 @@
     font-size: 20px;
     font-weight: bold;
     border: 2px solid var(--light);
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .input-form>input[type="submit"]:hover{
     background-color: var(--light);
@@ -78,6 +81,8 @@
     border-radius: 3px;
     outline: none;
     outline-color: var(--light);
+    font-weight: 400;
+    color: black;
 }
 .year>input::placeholder{
     text-align: center;
@@ -149,6 +154,8 @@
     border-radius: 5px;
     padding: 10px;
     outline-color: var(--light);
+    font-weight: 400;
+    color: black;
 }
 
 .input-interest>div{
