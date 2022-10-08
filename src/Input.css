@@ -74,6 +74,7 @@ input::placeholder{
     text-align: center;
 }
 
+
 .year>input{
     border: none;
     border-bottom: 1px solid var(--light);
@@ -168,4 +169,36 @@ input::placeholder{
     right: 2%;
     top: 2%;
     cursor: pointer;
+}
+
+.input-mob{
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+.input-mob::-webkit-outer-spin-button,
+.input-mob::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.edu-grade{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-column: auto !important;
+    align-items: center;
+}
+
+.grade-input{
+    grid-column: auto !important;
+}
+.grade-input>input{
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    outline-color: var(--light);
+    box-sizing: border-box;
+    font-weight: 400;
+    padding: 3px;
+    width: 80%;
 }

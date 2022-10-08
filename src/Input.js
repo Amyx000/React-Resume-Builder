@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillPlusCircleFill } from "react-icons/bs"
 import { RiCloseFill } from "react-icons/ri"
 import "./Input.css";
@@ -8,6 +8,8 @@ import { getuserdata } from "./Redux/Reducers/userReducer";
 
 function Input() {
     const dispatch = useDispatch()
+    const [present, Setpresent] = useState(false)
+    const[grade,Setgrade]=useState("percentage")
     const { register, handleSubmit, control, formState: { errors } } = useForm(
         {
             defaultValues: {
@@ -18,7 +20,7 @@ function Input() {
                     name: "", provider: ""
                 }],
                 education: [{
-                    degree: "", grade: "", university: "", yearfrom: "", yearto: ""
+                    degree: "", grade: "", university: "", yearfrom: "", yearto: "",gradetype:"percentage"
                 }],
                 personal: {
                     technicalskill: [{
@@ -28,8 +30,8 @@ function Input() {
                         hobbie: ""
                     }]
                 },
-                project:[{
-                    name:"",tech:""
+                project: [{
+                    name: "", tech: ""
                 }]
 
             }
@@ -84,6 +86,11 @@ function Input() {
         dispatch(getuserdata(data))
     }
 
+    const checkboxFunc = (e) => {
+        const { checked } = e.target
+        Setpresent(checked)
+    }
+
     return (
         <>
             <div className="input-header">Enter your details</div>
@@ -91,11 +98,11 @@ function Input() {
                 <form className="input-form" onSubmit={handleSubmit(onSubmit)}>
 
                     <div className="input-head">Personal Details</div>
-                    <input  {...register("personal.name",{required:true})} placeholder="Name" />
+                    <input  {...register("personal.name", { required: true })} placeholder="Name" />
                     <input {...register("personal.lastname", { required: true })} placeholder="Last Name" />
-                    <input  {...register("personal.date", { required: true })} placeholder="Birthdate (dd-mm-yy)" />
-                    <input {...register("personal.mob", { maxLength: 10,required:true })} placeholder="Mobile No- +91" />
-                    <input className="singlefield" type={"personal.email"} {...register("email", { required: true })} placeholder="Email" />
+                    <input type={"date"}  {...register("personal.date", { required: true })} placeholder="Birthdate (dd-mm-yy)" />
+                    <input className="input-mob" type={"number"} inputMode={"tel"} {...register("personal.mob", { maxLength: 10, required: true })} placeholder="Mobile No- +91" />
+                    <input className="singlefield" type={"email"} inputMode={"email"} {...register("personal.email", { required: true })} placeholder="Email" />
                     <input {...register("personal.title", { required: true })} placeholder="Professional Title e.g Full Stack Developer" />
                     <input {...register("personal.quote", { required: true })} placeholder="Describe yourself in one or two line" />
 
@@ -119,7 +126,7 @@ function Input() {
                         return (
                             <React.Fragment key={item.id}>
                                 <input {...register(`personal.technicalskill[${index}].skill`, { required: true })} defaultValue={item.skill} placeholder="Technical Skills" />
-                                <input type={"number"} {...register(`personal.technicalskill[${index}].rate`, { required: true }, { valueAsNumber: true })} defaultValue={item.rate} placeholder="Rate your skill out of 10" />
+                                <input type={"number"} min="0" max="10" {...register(`personal.technicalskill[${index}].rate`, { required: true })} defaultValue={item.rate} placeholder="Rate your skill out of 10" />
                                 {index !== 0 ?
                                     <div className="input-remove">
                                         <div onClick={() => { technicalRemove(index) }}>
@@ -145,9 +152,13 @@ function Input() {
                                 <input {...register(`experience[${index}].company`)} defaultValue={item.company} placeholder="Workplace/Company" />
                                 <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description" />
                                 <div className="year">
-                                    <input name="year" {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />-
-                                    <input name="year" {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
-                                    <input type={'checkbox'} /><span className="input-span">Present?</span>
+                                    <input name="year" {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
+                                    {!present ?
+                                        <>
+                                            <>-</>
+                                            <input name="year" {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
+                                        </> : null}
+                                    <input type={'checkbox'} {...register(`experience[${index}].present`)} onChange={checkboxFunc} /><span className="input-span">Present?</span>
                                 </div>
                                 {index !== 0 ?
                                     <div className="input-remove">
@@ -165,8 +176,8 @@ function Input() {
                     </div>
 
                     <div className="input-head">Personal Projects</div>
-                    {projectFields.map((item,index)=>{
-                        return(
+                    {projectFields.map((item, index) => {
+                        return (
                             <React.Fragment key={item.id}>
                                 <div className="input-index">{index + 1}.</div>
                                 <input className="singlefield" {...register(`project[${index}].name`)} defaultValue={item.name} placeholder="Project Title" />
@@ -215,12 +226,26 @@ function Input() {
                         return (
                             <React.Fragment key={item.id}>
                                 <div className="input-index">{index + 1}.</div>
-                                <input {...register(`education[${index}].degree`, { required: true })} placeholder="College/Degree/Diploma Name" />
-                                <input {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
+                                <input className="singlefield" {...register(`education[${index}].degree`, { required: true })} placeholder="College/Degree/Diploma Name" />
+                                <div className="edu-grade">
+                                    <div>
+                                        <input name="grade" value="percentage" defaultChecked onClick={(e)=>Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                        <span className="input-span">Percentage?</span>
+                                    </div>
+                                    <div>/</div>
+                                    <div>
+                                        <input name="grade" value="grade" onClick={(e)=>Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                        <span className="input-span">Grade?</span>
+                                    </div>
+                                </div>
+                                <div className="grade-input">
+                                    <input type={"number"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
+                                    <>{grade==="percentage"?" %":" /10"}</>
+                                </div>
                                 <input className="singlefield" {...register(`education[${index}].university`, { required: true })} placeholder="Institute/University Name" />
                                 <div className="year">
-                                    <input name="year" {...register(`education[${index}].yearfrom`, { required: true })} placeholder="mm/yy" />-
-                                    <input name="year" {...register(`education[${index}].yearto`, { required: true })} placeholder="mm/yy" />
+                                    <input name="year" {...register(`education[${index}].yearfrom`, { required: true })} placeholder="yyyy e.g 2010" />-
+                                    <input name="year" {...register(`education[${index}].yearto`, { required: true })} placeholder="yyyy e.g 2014" />
                                 </div>
                                 {index !== 0 ?
                                     <div className="input-remove">
@@ -243,8 +268,8 @@ function Input() {
                     <input {...register("link.github", { required: true })} placeholder="Github Url" />
                     <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url" />
 
-                    {errors.personal||errors.education?
-                    <span className="input-err">Please enter the required field</span>:null}
+                    {errors.personal || errors.education ?
+                        <span className="input-err">Please enter the required field</span> : null}
                     <input type="submit" value={"Next"} />
                 </form>
             </div>

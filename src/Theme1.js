@@ -5,11 +5,11 @@ import { IoMdMail } from "react-icons/io"
 import { BiMobileAlt, BiSquare } from "react-icons/bi"
 import { MdLocationOn } from "react-icons/md"
 import { GrLinkedinOption } from "react-icons/gr"
+// import { userdate } from "./data"
 
 function Theme1() {
-
-    const themes = ["#52A589", "red","#7895B2","#B1B2FF","#FF9494","#886F6F","#FF87CA","#1572A1"]
-    const [themeclr, Setthemeclr] = useState(themes[0])
+    const themes = ["#52A589","#7895B2","#B1B2FF","#FF9494","#886F6F","#FF87CA","#1572A1","#905E96","#92A9BD"]
+    const [themeclr, Setthemeclr] = useState(themes[8])
 
     useEffect(() => {
         window.scrollTo({
