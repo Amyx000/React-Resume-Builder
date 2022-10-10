@@ -5,9 +5,11 @@ import "./Input.css";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { getuserdata } from "./Redux/Reducers/userReducer";
+import { useNavigate } from "react-router-dom";
 
 function Input() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [present, Setpresent] = useState(false)
     const[grade,Setgrade]=useState("percentage")
     const { register, handleSubmit, control, formState: { errors } } = useForm(
@@ -84,6 +86,7 @@ function Input() {
     const onSubmit = (data) => {
         console.log(data);
         dispatch(getuserdata(data))
+        navigate("/selecttheme")
     }
 
     const checkboxFunc = (e) => {
@@ -239,7 +242,7 @@ function Input() {
                                     </div>
                                 </div>
                                 <div className="grade-input">
-                                    <input type={"number"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
+                                    <input type={"number"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
                                     <>{grade==="percentage"?" %":" /10"}</>
                                 </div>
                                 <input className="singlefield" {...register(`education[${index}].university`, { required: true })} placeholder="Institute/University Name" />
@@ -269,8 +272,8 @@ function Input() {
                     <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url" />
 
                     {errors.personal || errors.education ?
-                        <span className="input-err">Please enter the required field</span> : null}
-                    <input type="submit" value={"Next"} />
+                        <span className="input-err singlefield">Please enter the required field</span> : null}
+                    <input className="singlefield" type="submit" value={"Next"} />
                 </form>
             </div>
         </>

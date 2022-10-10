@@ -15,4 +15,25 @@ body{
 
 .link{
     text-decoration: none;
+
 }
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color:#23153a;
+    border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color:#3d2465;
+}
+::-webkit-scrollbar-thumb:active{
+    background-color:#3e1087;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #d6caec;
+  }

@@ -131,6 +131,7 @@
     font-size: 35px;
     cursor: pointer;
     color: white;
+    transition: all 0.5s ease-in-out;
 }
 .social-icon:hover{
     color: purple;

@@ -1,10 +1,23 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import "./Selecttheme.css"
+import { useForm } from "react-hook-form";
+import { useDispatch } from 'react-redux';
+import { getthemedata } from './Redux/Reducers/themeReducer';
 
 function Selecttheme() {
-    const[clickindex,Setclickindex]=useState("")
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [clickindex, Setclickindex] = useState("")
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const [cardselect,Setcardselect]=useState("")
     console.log(clickindex)
+
+    const onSubmit = (data) => {
+        console.log(data);
+        dispatch(getthemedata(data))
+        navigate(`/theme${clickindex + 1}/download`)
+    }
 
     const themedata = [
         {
@@ -19,40 +32,63 @@ function Selecttheme() {
         }
     ]
 
+    const radioinputFunc=(e)=>{
+        if(e.target.checked){
+            Setcardselect("card-selected")
+        }
+    }
+    const clickFunc=()=>{
+        if(clickindex!==""){
+            Setcardselect("card-selected")
+        }
+    }
+
+    useEffect(() => {
+      clickFunc()
+    }, )
+    
+
     return (
         <>
-            <div className='theme-header'>Select Theme</div>
-            <div className='theme-main'>
-                {themedata.map((item, index) => {
-                    return (
-                        <div key={index} onClick={()=>Setclickindex(index)} tabIndex={index}>
-                            <img src={item.img} alt=""></img>
-                            <div>{item.themename}</div>
-                        </div>
-                    )
-                })}
-                <div className='theme-main-msg'>More theme will available soon</div>
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='theme-header'>Select Theme</div>
+                <div className='theme-main'>
+                    {themedata.map((item, index) => {
+                        return (
+                            <div className={index===clickindex?cardselect:""} onClick={() => {Setclickindex(index);clickFunc()}} key={index} tabIndex={index}>
+                                <img src={item.img} alt=""></img>
+                                <div>{item.themename}</div>
+                                <input type={"radio"} {...register("theme",{required:true})} value={item.themename} checked={index===clickindex?true:false} onClick={() => Setclickindex(index)} onChange={radioinputFunc} name="theme" />
+                            </div>
+                        )
+                    })}
+                    <div className='theme-main-msg'>More theme will available soon</div>
+                </div>
+                {errors.theme?
+                    <div className='theme-err'>Select the theme</div> : null}
 
-            {clickindex!==""?
-            <>
-            <div className='theme-header'>Select Theme Color</div>
-            <div className='clr-select'>
-                {themedata[clickindex].colors.map((color, index) => {
-                    return (
-                        <div key={index}>
-                            <input type="radio" value={index} name="color" />
-                            <div style={{backgroundColor:`${color}`,width:"40px",height:"40px",borderRadius:"4px"}}></div>
+                {clickindex !== "" ?
+                    <>
+                        <div className='theme-header'>Select Theme Color</div>
+                        <div className='clr-select'>
+                            {themedata[clickindex].colors.map((color, index) => {
+                                return (
+                                    <div key={index}>
+                                        <input type="radio" {...register("color", { required: true })} value={color} name="color" />
+                                        <div style={{ backgroundColor: `${color}`}}></div>
+                                    </div>
+                                )
+                            })}
                         </div>
-                    )
-                })}
-            </div>
-            </>:null}
+                        {errors.color ?
+                            <div className='theme-err'>Select the theme color</div> : null}
+                    </> : null}
 
-            <div className='btn-div'>
-                <Link to={"/resumebuild"} className="link"><button className='btn'>Back</button></Link>
-                <Link to={`/theme${1}/download`} className="link"><button className='btn'>Proceed</button></Link>
-            </div>
+                <div className='btn-div'>
+                    <Link to={"/resumebuild"} className="link"><button className='btn'>Back</button></Link>
+                    <button type='submit' className='btn'>Proceed</button>
+                </div>
+            </form>
         </>
     )
 }

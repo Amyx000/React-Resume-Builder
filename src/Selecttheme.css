@@ -41,9 +41,8 @@
     margin-top: 20px;
 }
 
-.theme-main>div:focus{
+.card-selected{
     border: 2px solid var(--light);
-    
 }
 
 .btn-div{
@@ -78,4 +77,30 @@
     justify-content: center;
     gap: 20px;
     text-align: center;
+}
+
+.clr-select>div>div{
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 4px ;
+}
+
+.theme-err{
+    color: red;
+    font-size: 13px;
+    text-align: center;
+    padding: 10px;
+}
+
+
+@media screen and (max-width:750px){
+    .theme-main{
+        grid-template-columns: 1fr;
+    }
+    .theme-main-msg{
+        grid-column: auto;
+    }
+    .clr-select>div>div{
+        width: 4vw;
+    }
 }
