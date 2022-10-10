@@ -30,6 +30,7 @@
     padding: 10px;
     cursor: pointer;
     border-radius: 5px;
+    position: relative;
 }
 
 
@@ -66,4 +67,15 @@
 .btn:hover{
     background-color: var(--light);
     color: white;
+}
+
+.clr-select{
+    margin: 0px 10vw 0;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
 }
