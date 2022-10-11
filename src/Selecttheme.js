@@ -4,13 +4,14 @@ import "./Selecttheme.css"
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { getthemedata } from './Redux/Reducers/themeReducer';
+import axios from "axios"
 
 function Selecttheme() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [clickindex, Setclickindex] = useState("")
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const [cardselect,Setcardselect]=useState("")
+    const [cardselect, Setcardselect] = useState("")
     console.log(clickindex)
 
     const onSubmit = (data) => {
@@ -32,21 +33,24 @@ function Selecttheme() {
         }
     ]
 
-    const radioinputFunc=(e)=>{
-        if(e.target.checked){
+    const radioinputFunc = (e) => {
+        if (e.target.checked) {
             Setcardselect("card-selected")
         }
     }
-    const clickFunc=()=>{
-        if(clickindex!==""){
+    const clickFunc = () => {
+        if (clickindex !== "") {
             Setcardselect("card-selected")
         }
     }
 
     useEffect(() => {
-      clickFunc()
-    }, )
-    
+        clickFunc()
+    },)
+
+   
+
+
 
     return (
         <>
@@ -55,16 +59,16 @@ function Selecttheme() {
                 <div className='theme-main'>
                     {themedata.map((item, index) => {
                         return (
-                            <div className={index===clickindex?cardselect:""} onClick={() => {Setclickindex(index);clickFunc()}} key={index} tabIndex={index}>
+                            <div className={index === clickindex ? cardselect : ""} onClick={() => { Setclickindex(index); clickFunc() }} key={index} tabIndex={index}>
                                 <img src={item.img} alt=""></img>
                                 <div>{item.themename}</div>
-                                <input type={"radio"} {...register("theme",{required:true})} value={item.themename} checked={index===clickindex?true:false} onClick={() => Setclickindex(index)} onChange={radioinputFunc} name="theme" />
+                                <input type={"radio"} {...register("theme", { required: true })} value={item.themename} checked={index === clickindex ? true : false} onClick={() => Setclickindex(index)} onChange={radioinputFunc} name="theme" />
                             </div>
                         )
                     })}
                     <div className='theme-main-msg'>More theme will available soon</div>
                 </div>
-                {errors.theme?
+                {errors.theme ?
                     <div className='theme-err'>Select the theme</div> : null}
 
                 {clickindex !== "" ?
@@ -75,7 +79,7 @@ function Selecttheme() {
                                 return (
                                     <div key={index}>
                                         <input type="radio" {...register("color", { required: true })} value={color} name="color" />
-                                        <div style={{ backgroundColor: `${color}`}}></div>
+                                        <div style={{ backgroundColor: `${color}` }}></div>
                                     </div>
                                 )
                             })}

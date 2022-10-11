@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./app.css"
-import Header from "./Header";
+import Home from "./Home";
 import Theme1 from "./Theme1";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/*' element={<Header />} />
+          <Route path='/*' element={<Home />} />
           <Route path='/theme1/download' element={<Theme1 />} />
         </Routes>
       </BrowserRouter>

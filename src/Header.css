@@ -3,7 +3,7 @@
 .header{
     background-color: var(--light);
     display: grid;
-    grid-template-columns: 1fr repeat(3,auto);
+    grid-template-columns: 1fr repeat(4,auto);
     gap: 30px;
     align-items: center;
     box-sizing: border-box;
