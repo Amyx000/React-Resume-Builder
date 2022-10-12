@@ -12,7 +12,6 @@ function Selecttheme() {
     const [clickindex, Setclickindex] = useState("")
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [cardselect, Setcardselect] = useState("")
-    console.log(clickindex)
 
     const onSubmit = (data) => {
         console.log(data);
@@ -49,7 +48,7 @@ function Selecttheme() {
     },)
 
    
-
+console.log(`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/graphql`)
 
 
     return (
