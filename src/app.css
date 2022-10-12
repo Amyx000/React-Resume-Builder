@@ -36,4 +36,26 @@ body{
 
 ::-webkit-scrollbar-track {
     background-color: #d6caec;
-  }
+}
+
+.noprint{
+    display: grid;
+    justify-items: center;
+    padding: 10px;
+}
+
+.print-btn{
+    background-color: var(--light);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}  
+.print-btn:active{
+    background-color:#7951bf;
+}  
+
+@media print{
+    .noprint{
+        display: none;
+    }
+}

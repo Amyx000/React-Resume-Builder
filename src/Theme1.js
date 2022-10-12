@@ -17,7 +17,13 @@ function Theme1() {
         })
     }, [])
 
+    const print =()=>{
+        window.print()
+    }
+
     return (
+        <>
+        <div className='noprint'><button className='print-btn' onClick={print}>Download</button></div>
         <div className='resume-main'>
             <div className='resume'>
                 <div className='sec1'>
@@ -160,6 +166,7 @@ function Theme1() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

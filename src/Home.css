@@ -9,10 +9,17 @@
 }
 
 .home-head{
+    font-size: 1.7rem;
+    color: var(--light);
+    text-align: center;
+}
+.heading{
+    margin-top: 20px;
+    text-align: center;
     font-size: 3rem;
+    font-weight: bold;
     color: var(--light);
 }
-
 
 
 .home-main>div:nth-child(2){

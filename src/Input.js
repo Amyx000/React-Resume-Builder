@@ -129,7 +129,7 @@ function Input() {
                         return (
                             <React.Fragment key={item.id}>
                                 <input {...register(`personal.technicalskill[${index}].skill`, { required: true })} defaultValue={item.skill} placeholder="Technical Skills" />
-                                <input type={"number"} min="0" max="10" {...register(`personal.technicalskill[${index}].rate`, { required: true })} defaultValue={item.rate} placeholder="Rate your skill out of 10" />
+                                <input type={"number"} inputMode={"decimal"} min="0" max="10" {...register(`personal.technicalskill[${index}].rate`, { required: true })} defaultValue={item.rate} placeholder="Rate your skill out of 10" />
                                 {index !== 0 ?
                                     <div className="input-remove">
                                         <div onClick={() => { technicalRemove(index) }}>
@@ -155,11 +155,11 @@ function Input() {
                                 <input {...register(`experience[${index}].company`)} defaultValue={item.company} placeholder="Workplace/Company" />
                                 <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description" />
                                 <div className="year">
-                                    <input name="year" {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
+                                    <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
                                     {!present ?
                                         <>
                                             <>-</>
-                                            <input name="year" {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
+                                            <input name="year"  inputMode={"numeric"} {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
                                         </> : null}
                                     <input type={'checkbox'} {...register(`experience[${index}].present`)} onChange={checkboxFunc} /><span className="input-span">Present?</span>
                                 </div>
@@ -242,13 +242,13 @@ function Input() {
                                     </div>
                                 </div>
                                 <div className="grade-input">
-                                    <input type={"number"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
+                                    <input type={"number"} inputMode={"decimal"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
                                     <>{grade==="percentage"?" %":" /10"}</>
                                 </div>
                                 <input className="singlefield" {...register(`education[${index}].university`, { required: true })} placeholder="Institute/University Name" />
                                 <div className="year">
-                                    <input name="year" {...register(`education[${index}].yearfrom`, { required: true })} placeholder="yyyy e.g 2010" />-
-                                    <input name="year" {...register(`education[${index}].yearto`, { required: true })} placeholder="yyyy e.g 2014" />
+                                    <input name="year" inputMode={"decimal"} {...register(`education[${index}].yearfrom`, { required: true })} placeholder="yyyy e.g 2010" />-
+                                    <input name="year" inputMode={"numeric"} {...register(`education[${index}].yearto`, { required: true })} placeholder="yyyy e.g 2014" />
                                 </div>
                                 {index !== 0 ?
                                     <div className="input-remove">

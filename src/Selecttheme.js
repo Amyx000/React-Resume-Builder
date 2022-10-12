@@ -12,54 +12,53 @@ function Selecttheme() {
     const [clickindex, Setclickindex] = useState("")
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [cardselect, Setcardselect] = useState("")
+    const [themedata,Setthemedata]=useState([])
+    const[selected,Setselected]=useState({themename:"",color:""})
 
-    const onSubmit = (data) => {
-        console.log(data);
-        dispatch(getthemedata(data))
+    const onSubmit = () => {
+        dispatch(getthemedata(selected))
         navigate(`/theme${clickindex + 1}/download`)
     }
 
-    const themedata = [
-        {
-            "themename": "Professional",
-            "img": "https://i.pinimg.com/originals/42/4b/ef/424bef6e0ddacab678afb3738f34bf68.png",
-            "colors": ["#52A589", "#7895B2", "#B1B2FF", "#FF9494", "#886F6F", "#FF87CA", "#1572A1", "#905E96", "#92A9BD"]
-        },
-        {
-            "themename": "Classic",
-            "img": "https://d.novoresume.com/images/doc/simple-resume-template.png",
-            "colors": ["#52A589", "#7895B2"]
-        }
-    ]
 
     const radioinputFunc = (e) => {
         if (e.target.checked) {
             Setcardselect("card-selected")
         }
     }
-    const clickFunc = () => {
-        if (clickindex !== "") {
-            Setcardselect("card-selected")
-        }
-    }
+    
 
     useEffect(() => {
-        clickFunc()
-    },)
-
-   
-console.log(`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/graphql`)
+        async function getthemes() {
+            try {
+                const res = await axios.post(`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/graphql`, {
+                    "query": `query fetchtheme {
+                    themes {
+                      themename
+                      img
+                      colors
+                      id
+                    }
+                  }`
+                })
+                Setthemedata(res.data.data.themes)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getthemes()
+    }, [])
 
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} >
                 <div className='theme-header'>Select Theme</div>
                 <div className='theme-main'>
                     {themedata.map((item, index) => {
                         return (
-                            <div className={index === clickindex ? cardselect : ""} onClick={() => { Setclickindex(index); clickFunc() }} key={index} tabIndex={index}>
-                                <img src={item.img} alt=""></img>
+                            <div className={index === clickindex ? cardselect : ""} onClick={() => { Setclickindex(index); Setselected(e=>({...e,themename:item.themename}));Setcardselect("card-selected") }} key={index}>
+                                <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${item.img}`} alt=""></img>
                                 <div>{item.themename}</div>
                                 <input type={"radio"} {...register("theme", { required: true })} value={item.themename} checked={index === clickindex ? true : false} onClick={() => Setclickindex(index)} onChange={radioinputFunc} name="theme" />
                             </div>
@@ -74,10 +73,10 @@ console.log(`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/graphql`)
                     <>
                         <div className='theme-header'>Select Theme Color</div>
                         <div className='clr-select'>
-                            {themedata[clickindex].colors.map((color, index) => {
+                            {themedata[clickindex].colors.split(",").map((color, index) => {
                                 return (
                                     <div key={index}>
-                                        <input type="radio" {...register("color", { required: true })} value={color} name="color" />
+                                        <input type="radio" {...register("color", { required: true })} value={color} name="color" onChange={(e)=>Setselected(prev=>({...prev,color:e.target.value}))} />
                                         <div style={{ backgroundColor: `${color}` }}></div>
                                     </div>
                                 )

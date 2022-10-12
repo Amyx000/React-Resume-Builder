@@ -3,11 +3,11 @@
 .header{
     background-color: var(--light);
     display: grid;
-    grid-template-columns: 1fr repeat(4,auto);
-    gap: 30px;
+    grid-template-columns:70% repeat( auto-fit, minmax(20px, 1fr) );
+    /* gap: 10px; */
     align-items: center;
     box-sizing: border-box;
-    padding: 10px 50px;
+    padding: 10px 0px 10px 20px;
     border-bottom:3px solid var(--light);
     position: sticky;
     top: 0;
@@ -16,6 +16,8 @@
     z-index: 100;
 }
 .header>div{
+    display: grid;
+    justify-self: center;
     color: white;
     font-weight: bold;
     font-size: 18px;
@@ -26,15 +28,24 @@
 .header>div:first-child{
     font-size: 30px;
     font-family: 'Bowlby One Sc', cursive;
+    justify-self: flex-start;
 }
 
 .logo{
     color: white;
 }
 
-@media screen and (max-width:450px) {
+@media screen and (max-width:850px) {
     .header{
-        padding: 10px 20px;
+        padding: 10px 0 10px 20px;
+        grid-template-columns:50% repeat( auto-fit, minmax(20px, 1fr) );
+    }
+}
+
+@media screen and (max-width:500px) {
+    .header{
+        padding: 10px 0 10px 20px;
+        grid-template-columns:repeat( auto-fit, minmax(20px, 1fr) );
     }
     .header>div{
         font-size:16px;
