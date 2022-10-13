@@ -143,3 +143,28 @@
 .social-icon:hover{
     color: purple;
 }
+
+@media screen and (max-width:450px) {
+    .heading{
+        font-size: 2.5rem;
+    }
+    .steps>div:nth-child(2){
+        font-size: 1.5rem;
+    }
+    .step-head{
+        font-size: 2.5rem;
+    }
+
+    .step-subhead{
+        padding: 10px;
+    }
+    .steps>div:nth-child(2){
+        row-gap: 200px;
+    }
+    .home-main>div:nth-child(3){
+        grid-template-columns: 1fr;
+    }
+    .home-main>div>img:nth-of-type(even){
+        transform: rotate(-8deg);
+    }
+}

@@ -2,7 +2,9 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./app.css"
 import Home from "./Home";
-import Theme1 from "./Theme1";
+import Classic from "./Themes/Classic";
+import Professional from "./Themes/Professional";
+import Creative from "./Themes/Creative";
 
 function App() {
 
@@ -11,7 +13,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/*' element={<Home />} />
-          <Route path='/theme1/download' element={<Theme1 />} />
+          <Route path='/theme-professional/download' element={<Professional/>} />
+          <Route path='/theme-creative/download' element={<Creative/>} />
+          <Route path='/theme-classic/download' element={<Classic/>} />
         </Routes>
       </BrowserRouter>
     </>

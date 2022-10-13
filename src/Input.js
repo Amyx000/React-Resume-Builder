@@ -11,7 +11,8 @@ function Input() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [present, Setpresent] = useState(false)
-    const[grade,Setgrade]=useState("percentage")
+    const [grade, Setgrade] = useState("percentage")
+    const[hint,Sethint]=useState("hint-hide")
     const { register, handleSubmit, control, formState: { errors } } = useForm(
         {
             defaultValues: {
@@ -22,7 +23,7 @@ function Input() {
                     name: "", provider: ""
                 }],
                 education: [{
-                    degree: "", grade: "", university: "", yearfrom: "", yearto: "",gradetype:"percentage"
+                    degree: "", grade: "", university: "", yearfrom: "", yearto: "", gradetype: "percentage"
                 }],
                 personal: {
                     technicalskill: [{
@@ -106,8 +107,15 @@ function Input() {
                     <input type={"date"}  {...register("personal.date", { required: true })} placeholder="Birthdate (dd-mm-yy)" />
                     <input className="input-mob" type={"number"} inputMode={"tel"} {...register("personal.mob", { maxLength: 10, required: true })} placeholder="Mobile No- +91" />
                     <input className="singlefield" type={"email"} inputMode={"email"} {...register("personal.email", { required: true })} placeholder="Email" />
+                    <input  {...register("personal.city", { required: true })} placeholder="City" />
+                    <input  {...register("personal.country", { required: true })} placeholder="Country" />
                     <input {...register("personal.title", { required: true })} placeholder="Professional Title e.g Full Stack Developer" />
                     <input {...register("personal.quote", { required: true })} placeholder="Describe yourself in one or two line" />
+                    <div className="singlefield form-img">
+                        <input type={"url"} {...register("personal.image", { required: true })} placeholder="Paste your image url" />
+                        <div onMouseEnter={()=>Sethint("hint")} onMouseLeave={()=>Sethint("hint-hide")}>i</div>
+                        <div className={hint}>You can copy and paste your github profile image url here.</div>
+                    </div>
 
                     <div className="input-head">Interest/Skills</div>
                     <div className="input-interest">
@@ -159,7 +167,7 @@ function Input() {
                                     {!present ?
                                         <>
                                             <>-</>
-                                            <input name="year"  inputMode={"numeric"} {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
+                                            <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
                                         </> : null}
                                     <input type={'checkbox'} {...register(`experience[${index}].present`)} onChange={checkboxFunc} /><span className="input-span">Present?</span>
                                 </div>
@@ -232,18 +240,18 @@ function Input() {
                                 <input className="singlefield" {...register(`education[${index}].degree`, { required: true })} placeholder="College/Degree/Diploma Name" />
                                 <div className="edu-grade">
                                     <div>
-                                        <input name="grade" value="percentage" defaultChecked onClick={(e)=>Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                        <input name="grade" value="percentage" defaultChecked onClick={(e) => Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                         <span className="input-span">Percentage?</span>
                                     </div>
                                     <div>/</div>
                                     <div>
-                                        <input name="grade" value="grade" onClick={(e)=>Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                        <input name="grade" value="grade" onClick={(e) => Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                         <span className="input-span">Grade?</span>
                                     </div>
                                 </div>
                                 <div className="grade-input">
                                     <input type={"number"} inputMode={"decimal"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
-                                    <>{grade==="percentage"?" %":" /10"}</>
+                                    <>{grade === "percentage" ? " %" : " /10"}</>
                                 </div>
                                 <input className="singlefield" {...register(`education[${index}].university`, { required: true })} placeholder="Institute/University Name" />
                                 <div className="year">

@@ -1,0 +1,32 @@
+
+.theme3{
+    font-size: 13px;
+}
+
+.theme3-top{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 40px 40px 30px;
+    color: white;
+    background-color: #374457;
+}
+
+.theme3-top img{
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 40px;
+}
+
+.theme3-sec2{
+    background-color: #2C343F;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+}
+.theme3-sec2>div{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    padding: 15px;
+    align-items: center;
+    gap: 8px;
+}

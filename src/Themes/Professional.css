@@ -1,8 +1,8 @@
 
 .resume{
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    padding: 10px;
+    grid-template-columns: 1fr 4fr;
+    padding: 20px;
     gap: 10px;
     font-size: 13px;
 }
@@ -20,9 +20,6 @@
     border-radius: 15px;
 }
 
-.resume-color{
-    color: rgb(82, 165, 137);
-}
 
 .resume-head{
     font-weight: bold;
@@ -45,11 +42,6 @@
     margin-bottom: 10px;
 }
 
-/* .sec2{
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 20px;
-} */
 
 .r-padding>div{
     padding-top: 10px;

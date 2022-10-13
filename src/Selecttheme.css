@@ -104,3 +104,14 @@
         width: 4vw;
     }
 }
+
+@media screen and (max-width:450px) {
+    .clr-select{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px,1fr));
+        justify-items: center;
+    }
+    .clr-select>div>div{
+        width: 40px;
+    }
+}

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 .input-header{
     font-weight: bold;
@@ -199,6 +200,44 @@ input::placeholder{
 
 input[type="radio"]{
     cursor: pointer;
+}
+
+.form-img>input{
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    padding: 10px;
+    outline-color: var(--light);
+    box-sizing: border-box;
+}
+
+.form-img>input::placeholder{
+   font-weight: 400;
+}
+.form-img{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    position: relative;
+}
+.form-img>div{
+    display: grid;
+    align-content: center;
+    color: var(--light);
+    font-size: 20px;
+    padding: 0 10px;
+    font-family: 'Courgette', cursive;
+    cursor: pointer;
+}
+.hint{
+    color: white !important;
+    font-weight: 400 !important;
+    font-family: 'Comfortaa', cursive !important;
+    font-size: 11px !important;
+    padding: 6px !important;
+    background-color: var(--light);
+    border-radius: 5px;
+}
+.hint-hide{
+    display: none !important;
 }
 
 @media screen and (max-width:800px){

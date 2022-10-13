@@ -1,0 +1,30 @@
+
+.about-head{
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 50px;
+    color: var(--light);
+}
+
+.about{
+    margin: 0px 10vw;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+    display: grid;
+    justify-items: center;
+    text-align: justify;
+    padding: 30px 50px;
+}
+
+.about>a{
+    color: var(--light);
+    text-decoration: underline;
+}
+
+@media screen and (max-width:500px) {
+    .about{
+        margin: 0 20px 50px;
+        padding: 30px;
+    }
+}

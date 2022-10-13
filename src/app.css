@@ -52,7 +52,11 @@ body{
 }  
 .print-btn:active{
     background-color:#7951bf;
-}  
+}
+
+.loader{
+    margin: 30vh auto;
+}
 
 @media print{
     .noprint{

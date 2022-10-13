@@ -17,7 +17,7 @@ function Selecttheme() {
 
     const onSubmit = () => {
         dispatch(getthemedata(selected))
-        navigate(`/theme${clickindex + 1}/download`)
+        navigate(`/theme-${selected.themename.toLocaleLowerCase()}/download`)
     }
 
 

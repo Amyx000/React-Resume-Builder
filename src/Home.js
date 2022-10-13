@@ -34,12 +34,12 @@ function Home() {
             <div>Follow the steps</div>
             <div>
               <div className="step-head">Step 1:</div>
-              <div>Input all your details</div>
-              <div>Select the template you want</div>
+              <div className="step-subhead">Input all your details</div>
+              <div className="step-subhead">Select the template you want</div>
               <div className="step-head">:Step 2</div>
               <div className="step-head">Step 3:</div>
-              <div>Your resume is ready to download</div>
-              <div>Click on download</div>
+              <div className="step-subhead">Your resume is ready to download</div>
+              <div className="step-subhead">Click on download</div>
               <div className="step-head">:Step 4</div>
             </div>
           </div>
