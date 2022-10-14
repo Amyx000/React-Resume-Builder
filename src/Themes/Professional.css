@@ -1,4 +1,7 @@
-
+.resume-main{
+    width: 21cm;
+    margin: 0 auto;
+}
 .resume{
     display: grid;
     grid-template-columns: 1fr 4fr;

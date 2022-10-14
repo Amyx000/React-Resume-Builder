@@ -1,0 +1,41 @@
+
+
+.theme4{
+    font-size: 13px;
+    width: 21cm;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.theme4 img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.theme4-imgdiv{
+    display: grid;
+    justify-self: center;
+}
+
+.theme4>div:nth-child(1){
+    display: grid;
+    gap: 20px;
+    border-right: 2px solid;
+    padding-right: 20px;
+}
+
+.theme4-head{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.theme4-content{
+    padding-top: 10px;
+    display: grid;
+    gap:10px;
+}

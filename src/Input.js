@@ -114,7 +114,10 @@ function Input() {
                     <div className="singlefield form-img">
                         <input type={"url"} {...register("personal.image", { required: true })} placeholder="Paste your image url" />
                         <div onMouseEnter={()=>Sethint("hint")} onMouseLeave={()=>Sethint("hint-hide")}>i</div>
-                        <div className={hint}>You can copy and paste your github profile image url here.</div>
+                        <div className={hint}>
+                            You can copy and paste your github profile image url here.<br/>
+                            By right clicking and copy image address
+                        </div>
                     </div>
 
                     <div className="input-head">Interest/Skills</div>

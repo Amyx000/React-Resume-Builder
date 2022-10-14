@@ -26,7 +26,7 @@ function Home() {
             All new platform to build developer style resume in just few seconds.
           </div>
           <div className="img-home">
-            <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${"ef039e96-06fc-48ac-9672-ef73fe208087"}`} alt=""></img>
+            <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${"979a6d19-4edb-4d6e-a3d0-723d0b0c2ac4"}`} alt=""></img>
             <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${"1a465330-3f79-4dda-8939-2f70bda0ea55"}`} alt=""></img>
             <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${"8c8cc0ee-8a8a-47b6-b003-c7974cf8926f"}`} alt=""></img>
           </div>

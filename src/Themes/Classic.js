@@ -38,8 +38,8 @@ function Classic() {
                     <div className='theme2'>
                         <div className={"mb-4"}>
                             <div>
-                                <div className='text-3xl' style={{ color: themeclr,"fontWeight":"bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
-                                <div style={{ color: "gray","fontSize":"19px" }}>{userdata.personal.title}</div>
+                                <div className='text-3xl' style={{ color: themeclr, "fontWeight": "bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
+                                <div style={{ color: "gray", "fontSize": "19px" }}>{userdata.personal.title}</div>
                                 <div className={"mt-1 text-left"}>{userdata.personal.quote} asja akjks let check it out how the css is working
                                     is it working fine? has been the industry's</div>
                             </div>
@@ -65,7 +65,7 @@ function Classic() {
                             </div>
                         </div>
 
-                        <div className='theme2-section'>
+                        {userdata.experience[0].company ? <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>WORK EXPERIENCE</div>
                             <div className='section-content'>
                                 {userdata.experience.map((item, index) => {
@@ -82,9 +82,9 @@ function Classic() {
                                     )
                                 })}
                             </div>
-                        </div>
+                        </div> : null}
 
-                        <div className='theme2-section'>
+                        {userdata.project[0].name ? <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>PROJECTS</div>
                             <div className='section-content'>
                                 {userdata.project.map((item, index) => {
@@ -99,7 +99,7 @@ function Classic() {
                                     )
                                 })}
                             </div>
-                        </div>
+                        </div> : null}
 
                         <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>EDUCATION</div>
@@ -119,7 +119,7 @@ function Classic() {
                             </div>
                         </div>
 
-                        <div className='theme2-section'>
+                        {userdata.course[0].name ? <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>COURSES</div>
                             <div className='section-content'>
                                 {userdata.course.map((item, index) => {
@@ -130,6 +130,19 @@ function Classic() {
                                         </div>
                                     )
                                 })}
+                            </div>
+                        </div> : null}
+
+                        <div className='theme2-section'>
+                            <div className='section-head' style={{ "color": themeclr }}>INTERESTS/HOBBY</div>
+                            <div className='section-content'>
+                                <div className='theme2-interest'>
+                                    {userdata.personal.interest.map((item, index) => {
+                                        return (
+                                            <div key={index} style={{ "color":"black","border":`1px solid ${themeclr}`,"borderRadius": "5px", "padding": "3px", "fontSize": "12px" }}>{item.hobbie}</div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,8 @@
 .theme2{
     padding: 20px;
     font-size: 13px;
+    width: 21cm;
+    margin: 0 auto;
 }
 
 .theme2>div:nth-child(1){
