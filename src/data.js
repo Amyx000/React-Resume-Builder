@@ -21,11 +21,11 @@ export const userdata = {
     },
     {
       "degree": "B.E Chemical Engineer",
-      "grade": "9.7",
+      "grade": "80",
       "university": "Mumbai university",
       "yearfrom": "2017",
       "yearto": "2021",
-      "gradetype": "grade"
+      "gradetype": "percentage"
     }
   ],
   experience: [

@@ -6,6 +6,7 @@ import Classic from "./Themes/Classic";
 import Professional from "./Themes/Professional";
 import Creative from "./Themes/Creative";
 import Minimalist from "./Themes/Minimalist";
+import Pagenotfount404 from "./Pagenotfount404";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/theme-creative/download' element={<Creative/>} />
           <Route path='/theme-classic/download' element={<Classic/>} />
           <Route path='/theme-minimalist/download' element={<Minimalist/>} />
+          <Route path='*' element={<Pagenotfount404/>} />
         </Routes>
       </BrowserRouter>
     </>

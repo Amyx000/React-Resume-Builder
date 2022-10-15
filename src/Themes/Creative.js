@@ -91,7 +91,7 @@ function Creative() {
                           <div style={{ "fontSize": "14px" }}>{item.company}</div>
                           <div className='text-xs italic' style={{ "color": themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                           <ul>
-                            <li className={"ml-3"} style={{"color":themeclr,"listStyle":"disc outside"}}>{item.description}</li>
+                            <li className={"ml-4"} style={{"color":themeclr,"listStyle":"disc outside"}}>{item.description}</li>
                           </ul>
                         </div>
                       )
