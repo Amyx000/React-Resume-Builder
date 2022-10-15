@@ -43,18 +43,27 @@ input::placeholder{
     font-size: 13px;
 }
 
-.input-form>input[type="submit"]{
+.btndiv{
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+    gap: 10px !important;
+}
+
+.input-btn{
+    text-align: center;
+    font-size: 15px !important;
     cursor: pointer;
     background-color: white;
     color: var(--light);
     transition: all 0.3s ease-in-out;
     box-sizing: border-box;
-    font-size: 20px;
     font-weight: bold;
-    border: 2px solid var(--light);
-    margin-top: 10px;
+    border: 2px solid var(--light) !important;
+    border-radius: 5px;
+    padding: 10px;
+    /* margin-top: 20px; */
 }
-.input-form>input[type="submit"]:hover{
+.input-btn:hover{
     background-color: var(--light);
     color: white;
 }
@@ -250,6 +259,12 @@ input[type="radio"]{
     }
     .input-form>div{
         grid-column: auto;
+    }
+}
+
+@media screen and (max-width:500px){
+    .btndiv{
+        grid-template-columns: 1fr !important;
     }
 }
 

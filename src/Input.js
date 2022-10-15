@@ -3,41 +3,45 @@ import { BsFillPlusCircleFill } from "react-icons/bs"
 import { RiCloseFill } from "react-icons/ri"
 import "./Input.css";
 import { useForm, useFieldArray } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { getuserdata } from "./Redux/Reducers/userReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { clruserdata, getuserdata } from "./Redux/Reducers/userReducer";
 import { useNavigate } from "react-router-dom";
 
 function Input() {
+    const userredux=useSelector(state=>state.user.userdata)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [present, Setpresent] = useState(false)
     const [grade, Setgrade] = useState("percentage")
     const[hint,Sethint]=useState("hint-hide")
-    const { register, handleSubmit, control, formState: { errors } } = useForm(
-        {
-            defaultValues: {
-                experience: [{
-                    company: "", description: "", worktitle: "", yearfrom: "", yearto: ""
-                }],
-                course: [{
-                    name: "", provider: ""
-                }],
-                education: [{
-                    degree: "", grade: "", university: "", yearfrom: "", yearto: "", gradetype: "percentage"
-                }],
-                personal: {
-                    technicalskill: [{
-                        skill: "", rate: ""
-                    }],
-                    interest: [{
-                        hobbie: ""
-                    }]
-                },
-                project: [{
-                    name: "", tech: ""
-                }]
+    const emptydata={
+        experience: [{
+            company: "", description: "", worktitle: "", yearfrom: "", yearto: ""
+        }],
+        course: [{
+            name: "", provider: ""
+        }],
+        education: [{
+            degree: "", grade: "", university: "", yearfrom: "", yearto: "", gradetype: "percentage"
+        }],
+        personal: {
+            technicalskill: [{
+                skill: "", rate: ""
+            }],
+            interest: [{
+                hobbie: ""
+            }]
+        },
+        project: [{
+            name: "", tech: ""
+        }]
 
-            }
+    }
+    const [filldata,Setfilldata] = useState(userredux.personal?userredux:emptydata)
+
+    const { register, handleSubmit, control, formState: { errors },reset } = useForm(
+        {
+            defaultValues: filldata
         }
     );
 
@@ -94,6 +98,13 @@ function Input() {
         const { checked } = e.target
         Setpresent(checked)
     }
+
+    const clrFunc=()=>{
+        dispatch(clruserdata())
+        Setfilldata(emptydata)
+        reset()
+    }
+    
 
     return (
         <>
@@ -284,7 +295,13 @@ function Input() {
 
                     {errors.personal || errors.education ?
                         <span className="input-err singlefield">Please enter the required field</span> : null}
-                    <input className="singlefield" type="submit" value={"Next"} />
+                   
+                    {userredux.personal?<div className="singlefield btndiv mt-3">
+                        <input className="input-btn" value={"Clear All"} onClick={clrFunc} />
+                        <input className="input-btn" type="submit" value={"Next"} />
+                    </div>:
+                    <input className="input-btn singlefield mt-3" type="submit" value={"Next"} />}
+
                 </form>
             </div>
         </>

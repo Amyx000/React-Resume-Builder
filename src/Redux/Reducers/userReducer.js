@@ -9,9 +9,12 @@ const userSlice = createSlice({
     reducers:{
         getuserdata:(state,action)=>{
             state.userdata=action.payload
+        },
+        clruserdata:(state,action)=>{
+            state.userdata={}
         }
     }
 })
 
-export const {getuserdata}= userSlice.actions
+export const {getuserdata,clruserdata}= userSlice.actions
 export default userSlice.reducer
