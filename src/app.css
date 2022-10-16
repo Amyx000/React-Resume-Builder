@@ -38,16 +38,10 @@ body{
     background-color: #d6caec;
 }
 
-.noprint{
-    display: grid;
-    justify-items: center;
-    padding: 10px;
-}
-
 .print-btn{
     background-color: var(--light);
     color: white;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
 }  
 .print-btn:active{
@@ -56,6 +50,17 @@ body{
 
 .loader{
     margin: 30vh auto;
+}
+
+.noprint{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+.anchor-link:hover{
+    font-weight: bold;
 }
 
 @media print{

@@ -6,13 +6,15 @@ import { BiMobileAlt } from 'react-icons/bi'
 import { GrLinkedinOption } from 'react-icons/gr'
 import { IoMdMail } from 'react-icons/io'
 import { MdLocationOn } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { userdata } from '../data'
 import "./Creative.css"
 
 function Creative() {
-  const themeclr = "#F44F42"
   const [loading, setLoading] = useState(true);
+  const themeclr = useSelector(state => state.theme.theme.color)
 
   const loadFunc = () => {
     setLoading(true)
@@ -36,7 +38,11 @@ function Creative() {
     <>
       {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
         <>
-          <div className='noprint'><button className='print-btn' onClick={print}>Download</button></div>
+          <div className='noprint'>
+            <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
+            <Link to={"/selecttheme"}><button className='print-btn'>Change theme</button></Link>
+            <button className='print-btn' onClick={print}>Download</button>
+          </div>
           <div className='theme3'>
             <div className='theme3-top'>
               <div>
@@ -81,7 +87,7 @@ function Creative() {
             <div className='theme3-sec3'>
               <div>
 
-                {userdata.experience[0].company?<div className='theme3-sec'>
+                {userdata.experience[0].company ? <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>WORK EXPERIENCE</div>
                   <div className='theme3-sec-content'>
                     {userdata.experience.map((item, index) => {
@@ -91,13 +97,13 @@ function Creative() {
                           <div style={{ "fontSize": "14px" }}>{item.company}</div>
                           <div className='text-xs italic' style={{ "color": themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                           <ul>
-                            <li className={"ml-4"} style={{"color":themeclr,"listStyle":"disc outside"}}>{item.description}</li>
+                            <li className={"ml-4"} style={{"listStyle": "disc outside" }}>{item.description}</li>
                           </ul>
                         </div>
                       )
                     })}
                   </div>
-                </div>:null}
+                </div> : null}
 
                 <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>EDUCATION</div>
@@ -147,7 +153,7 @@ function Creative() {
                   </div>
                 </div>
 
-               {userdata.project[0].name?<div className='theme3-sec'>
+                {userdata.project[0].name ? <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>PROJECTS</div>
                   <div className='theme3-sec-content'>
                     {userdata.project.map((item, index) => {
@@ -159,9 +165,9 @@ function Creative() {
                       )
                     })}
                   </div>
-                </div>:null}
+                </div> : null}
 
-                {userdata.course[0].name?<div className='theme3-sec'>
+                {userdata.course[0].name ? <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>COURSES & TRAINING</div>
                   <div className='theme3-sec-content'>
                     {userdata.course.map((item, index) => {
@@ -173,7 +179,7 @@ function Creative() {
                       )
                     })}
                   </div>
-                </div>:null}
+                </div> : null}
 
               </div>
             </div>

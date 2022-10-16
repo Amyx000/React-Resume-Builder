@@ -1,19 +1,25 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./Selecttheme.css"
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getthemedata } from './Redux/Reducers/themeReducer';
 import axios from "axios"
 
 function Selecttheme() {
+    const themeredux = useSelector(state=>state.theme)
+    const prefill = themeredux.theme.themename?themeredux.theme:{themename:"",color:""}
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [clickindex, Setclickindex] = useState("")
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors },setValue } = useForm(
+        {defaultValues:{
+            theme: prefill.themename,color:prefill.color
+        }}
+    )
     const [cardselect, Setcardselect] = useState("")
     const [themedata,Setthemedata]=useState([])
-    const[selected,Setselected]=useState({themename:"",color:""})
+    const[selected,Setselected]=useState(prefill.themename?prefill:{themename:"",color:""})
 
     const onSubmit = () => {
         dispatch(getthemedata(selected))
@@ -42,12 +48,21 @@ function Selecttheme() {
                   }`
                 })
                 Setthemedata(res.data.data.themes)
+                Setclickindex(prefill.themename?res.data.data.themes.findIndex(e=>e.themename===prefill.themename):"")
+                Setcardselect("card-selected")
+                
             } catch (error) {
                 console.log(error)
             }
         }
         getthemes()
+        // eslint-disable-next-line
     }, [])
+    
+    const resetColor = (item)=>{
+        setValue("color","")
+
+    }
 
 
     return (
@@ -57,7 +72,7 @@ function Selecttheme() {
                 <div className='theme-main'>
                     {themedata.map((item, index) => {
                         return (
-                            <div className={index === clickindex ? cardselect : ""} onClick={() => { Setclickindex(index); Setselected(e=>({...e,themename:item.themename}));Setcardselect("card-selected") }} key={index}>
+                            <div className={index === clickindex? cardselect : ""} onClick={() => { Setclickindex(index); Setselected(e=>({...e,themename:item.themename}));Setcardselect("card-selected");resetColor(item) }} key={index}>
                                 <img src={`${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/storage/files/${item.img}`} alt=""></img>
                                 <div>{item.themename}</div>
                                 <input type={"radio"} {...register("theme", { required: true })} value={item.themename} checked={index === clickindex ? true : false} onClick={() => Setclickindex(index)} onChange={radioinputFunc} name="theme" />

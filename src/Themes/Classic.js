@@ -8,9 +8,11 @@ import { AiFillGithub } from 'react-icons/ai'
 import { MdLocationOn } from 'react-icons/md'
 import BounceLoader from 'react-spinners/BounceLoader'
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function Classic() {
-    const themeclr = "#003366"
+    const themeclr = useSelector(state => state.theme.theme.color)
     const [loading, setLoading] = useState(true);
 
     const loadFunc = () => {
@@ -34,7 +36,11 @@ function Classic() {
         <>
             {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
                 <>
-                    <div className='noprint'><button className='print-btn' onClick={print}>Download</button></div>
+                    <div className='noprint'>
+                        <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
+                        <Link to={"/selecttheme"}><button className='print-btn'>Change theme</button></Link>
+                        <button className='print-btn' onClick={print}>Download</button>
+                    </div>
                     <div className='theme2'>
                         <div className={"mb-4"}>
                             <div>
@@ -93,7 +99,7 @@ function Classic() {
                                             <BiSquare style={{ color: themeclr }} />
                                             <div>
                                                 <div className='resume-title'>{item.name}</div>
-                                                <div style={{ color: themeclr }}>{item.tech}</div>
+                                                <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                                             </div>
                                         </div>
                                     )
@@ -126,7 +132,7 @@ function Classic() {
                                     return (
                                         <div key={index}>
                                             <div className='resume-title'>{item.name}</div>
-                                            <div style={{ color: themeclr }}>{item.provider}</div>
+                                            <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                                         </div>
                                     )
                                 })}
@@ -139,7 +145,7 @@ function Classic() {
                                 <div className='theme2-interest'>
                                     {userdata.personal.interest.map((item, index) => {
                                         return (
-                                            <div key={index} style={{ "color":"black","border":`1px solid ${themeclr}`,"borderRadius": "5px", "padding": "3px", "fontSize": "12px" }}>{item.hobbie}</div>
+                                            <div key={index} style={{ "color": "black", "border": `1px solid ${themeclr}`, "borderRadius": "5px", "padding": "3px", "fontSize": "12px" }}>{item.hobbie}</div>
                                         )
                                     })}
                                 </div>

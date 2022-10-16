@@ -10,6 +10,7 @@ import { CgShapeRhombus } from "react-icons/cg"
 import BounceLoader from 'react-spinners/BounceLoader'
 import { userdata } from '../data'
 import "./Minimalist.css"
+import { Link } from 'react-router-dom'
 
 function Minimalist() {
     const themeclr = "#3B6C8F"
@@ -38,13 +39,17 @@ function Minimalist() {
         <>
             {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
                 <>
-                    <div className='noprint'><button className='print-btn' onClick={print}>Download</button></div>
+                    <div className='noprint'>
+                        <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
+                        <Link to={"/selecttheme"}><button className='print-btn'>Change theme</button></Link>
+                        <button className='print-btn' onClick={print}>Download</button>
+                    </div>
                     <div className='theme4'>
 
                         <div style={{ "borderColor": themeclr }}>
 
                             <div className='theme4-imgdiv' >
-                                    <img style={{"color":themeclr}} src={userdata.personal.image} alt=""></img>
+                                <img style={{ "color": themeclr }} src={userdata.personal.image} alt=""></img>
                             </div>
 
                             <div className='theme4-sec'>

@@ -16,7 +16,7 @@ function Input() {
     const[hint,Sethint]=useState("hint-hide")
     const emptydata={
         experience: [{
-            company: "", description: "", worktitle: "", yearfrom: "", yearto: ""
+            company: "", description: "", worktitle: "", yearfrom: "", yearto: "",present: false
         }],
         course: [{
             name: "", provider: ""
@@ -30,14 +30,22 @@ function Input() {
             }],
             interest: [{
                 hobbie: ""
-            }]
+            }],
+            name: "", lastname: "", date: "", email: "",mob: "",
+            city:"", country:"", image: "",
+            title: "", quote: ""
         },
         project: [{
             name: "", tech: ""
-        }]
+        }],
+        link: {
+            linkedin: "",
+            github: "",
+            portfolio: ""
+        },
 
     }
-    const [filldata,Setfilldata] = useState(userredux.personal?userredux:emptydata)
+    const filldata = userredux.personal?userredux:emptydata
 
     const { register, handleSubmit, control, formState: { errors },reset } = useForm(
         {
@@ -79,7 +87,7 @@ function Input() {
         fields: projectFields,
         append: projectAppend,
         remove: projectRemove
-    } = useFieldArray({ control, name: "personal.interest" });
+    } = useFieldArray({ control, name: "project" });
 
 
     useEffect(() => {
@@ -89,7 +97,6 @@ function Input() {
     }, [])
 
     const onSubmit = (data) => {
-        console.log(data);
         dispatch(getuserdata(data))
         navigate("/selecttheme")
     }
@@ -101,8 +108,7 @@ function Input() {
 
     const clrFunc=()=>{
         dispatch(clruserdata())
-        Setfilldata(emptydata)
-        reset()
+        reset(emptydata)
     }
     
 

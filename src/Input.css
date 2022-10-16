@@ -217,6 +217,8 @@ input[type="radio"]{
     padding: 10px;
     outline-color: var(--light);
     box-sizing: border-box;
+    color: black;
+    font-weight: 400;
 }
 
 .form-img>input::placeholder{
