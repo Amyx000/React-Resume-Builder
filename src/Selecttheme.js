@@ -11,7 +11,7 @@ function Selecttheme() {
     const [loading, setLoading] = useState(true);
     const themeredux = useSelector(state => state.theme)
     const userredux = useSelector(state=>state.user.userdata)
-    const prefill = themeredux.theme.themename ? themeredux.theme : { themename: "", color: "" }
+    const prefill = themeredux.theme ? themeredux.theme : { themename: "", color: "" }
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [clickindex, Setclickindex] = useState("")
