@@ -6,11 +6,12 @@ import { BiMobileAlt, BiSquare } from "react-icons/bi"
 import { MdLocationOn } from "react-icons/md"
 import { GrLinkedinOption } from "react-icons/gr"
 import BounceLoader from "react-spinners/BounceLoader"
-import { userdata } from "../data"
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Theme1() {
+    const navigate = useNavigate()
+    const userdata=useSelector(state=>state.user.userdata)
     const themeclr = useSelector(state => state.theme.theme.color)
     const [loading, setLoading] = useState(true);
 
@@ -22,10 +23,12 @@ function Theme1() {
     }
 
     useEffect(() => {
-        loadFunc()
+        if(!userdata.personal){navigate("/")}
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
+        loadFunc()
+        // eslint-disable-next-line 
     }, [])
 
     const print = () => {

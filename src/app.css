@@ -63,6 +63,7 @@ body{
     font-weight: bold;
 }
 
+
 @media print{
     .noprint{
         display: none;

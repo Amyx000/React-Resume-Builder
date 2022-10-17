@@ -7,14 +7,15 @@ import { GrLinkedinOption } from 'react-icons/gr'
 import { IoMdMail } from 'react-icons/io'
 import { MdLocationOn } from 'react-icons/md'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import BounceLoader from 'react-spinners/BounceLoader'
-import { userdata } from '../data'
 import "./Creative.css"
 
 function Creative() {
   const [loading, setLoading] = useState(true);
   const themeclr = useSelector(state => state.theme.theme.color)
+  const navigate = useNavigate()
+  const userdata = useSelector(state => state.user.userdata)
 
   const loadFunc = () => {
     setLoading(true)
@@ -24,10 +25,12 @@ function Creative() {
   }
 
   useEffect(() => {
-    loadFunc()
+    if (!userdata.personal) { navigate("/") }
     window.scrollTo({
       top: 0, left: 0, behavior: "smooth"
     })
+    loadFunc()
+    // eslint-disable-next-line 
   }, [])
 
   const print = () => {
@@ -97,7 +100,7 @@ function Creative() {
                           <div style={{ "fontSize": "14px" }}>{item.company}</div>
                           <div className='text-xs italic' style={{ "color": themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                           <ul>
-                            <li className={"ml-4"} style={{"listStyle": "disc outside" }}>{item.description}</li>
+                            <li className={"ml-4"} style={{ "listStyle": "disc outside" }}>{item.description}</li>
                           </ul>
                         </div>
                       )
@@ -113,7 +116,7 @@ function Creative() {
                         <div key={index}>
                           <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.degree}</div>
                           <div style={{ "fontSize": "14px" }}>{item.university}</div>
-                          <div className='text-xs italic edu-grade' style={{ color: themeclr }}>
+                          <div className='text-xs italic edu-grading' style={{ color: themeclr }}>
                             <div>{item.yearfrom} - {item.yearto}</div>
                             <div>{item.grade}{item.gradetype === "grade" ? "/10" : "%"}</div>
                           </div>
@@ -136,12 +139,12 @@ function Creative() {
                           <React.Fragment key={index}>
                             <div>{item.skill}</div>
                             <div className='theme3-rate'>
-                              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+                              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i,index) => {
                                 return (
-                                  <>
+                                  <React.Fragment key={index}>
                                     {item.rate < i ? <div style={{ "color": themeclr }}><div></div></div> :
                                       <div style={{ "color": themeclr }}><div style={{ "color": themeclr, "backgroundColor": "gray" }}></div></div>}
-                                  </>
+                                  </React.Fragment>
 
                                 )
                               })}
