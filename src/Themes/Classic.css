@@ -4,6 +4,10 @@
     font-size: 13px;
     width: 21cm;
     margin: 0 auto;
+    height: 29.7cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .theme2>div:nth-child(1){

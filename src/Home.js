@@ -47,8 +47,8 @@ function Home() {
       <div className="contact" ref={scollToRef}>
         <div>Get in Touch</div>
         <div>
-          <a href="https://twitter.com/Armankazi111" className="link"><IoLogoTwitter className="social-icon" /></a>
-          <a href="https://github.com/Amyx000" className="link"><IoLogoGithub className="social-icon" /></a>
+          <a href="https://twitter.com/Armankazi111" target="_blank" rel="noopener noreferrer" className="link"><IoLogoTwitter className="social-icon" /></a>
+          <a href="https://github.com/Amyx000" target="_blank" rel="noopener noreferrer" className="link"><IoLogoGithub className="social-icon" /></a>
         </div>
       </div>
 

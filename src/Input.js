@@ -13,7 +13,7 @@ function Input() {
     const userredux = useSelector(state => state.user.userdata)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [present, Setpresent] = useState(false)
+    const[present,Setpresent]=useState([])
     const [grade, Setgrade] = useState("percentage")
     const [hint, Sethint] = useState("hint-hide")
     const emptydata = {
@@ -49,7 +49,7 @@ function Input() {
     }
     const filldata = userredux.personal ? userredux : emptydata
 
-    const { register, handleSubmit, control, formState: { errors }, reset } = useForm(
+    const { register, handleSubmit, control, formState: { errors }, reset} = useForm(
         {
             defaultValues: filldata
         }
@@ -111,10 +111,25 @@ function Input() {
         navigate("/selecttheme")
     }
 
-    const checkboxFunc = (e) => {
+
+
+
+    const checkboxFunc = (e,index) => {
+        
         const { checked } = e.target
-        Setpresent(checked)
+        const i = present.includes(index)
+
+        if(i===false&&checked===true){
+            
+        Setpresent(prev=>[...prev,index])
+        
+        }else if(i===true&&checked===false){
+            Setpresent(present.map(
+                (value, i) => value === index ? "" : value
+            ));
+        }
     }
+
 
     const clrFunc = () => {
         dispatch(clruserdata())
@@ -126,7 +141,7 @@ function Input() {
         <>
             {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
                 <>
-                    <div className="input-header">Enter your details</div>
+                   <div className="input-header">Enter your details</div>
                     <div className="input-main">
                         <form className="input-form" onSubmit={handleSubmit(onSubmit)}>
 
@@ -196,12 +211,12 @@ function Input() {
                                         <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description" />
                                         <div className="year">
                                             <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
-                                            {!present ?
+                                            {!present.includes(index)?
                                                 <>
                                                     <>-</>
                                                     <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearto`)} defaultValue={item.yearto} placeholder="mm/yy" />
                                                 </> : null}
-                                            <input type={'checkbox'} {...register(`experience[${index}].present`)} onChange={checkboxFunc} /><span className="input-span">Present?</span>
+                                            <input type={'checkbox'} {...register(`experience[${index}].present`)} onChange={(e)=>checkboxFunc(e,index)}/><span className="input-span">Present?</span>
                                         </div>
                                         {index !== 0 ?
                                             <div className="input-remove">

@@ -50,7 +50,7 @@ function Minimalist() {
                     </div>
                     <div className='theme4'>
 
-                        <div style={{ "borderColor": themeclr }}>
+                        <div className='theme4-sec1' style={{ "borderColor": themeclr }}>
 
                             <div className='theme4-imgdiv' >
                                 <img style={{ "color": themeclr }} src={userdata.personal.image} alt=""></img>
@@ -89,7 +89,7 @@ function Minimalist() {
                             </div>
 
                         </div>
-                        <div>
+                        <div className='theme4-sec2'>
 
                             <div>
                                 <div className={"text-3xl"} style={{ "color": themeclr }}>{userdata.personal.name} {userdata.personal.lastname}</div>
