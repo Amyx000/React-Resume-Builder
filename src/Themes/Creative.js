@@ -88,7 +88,7 @@ function Creative() {
             </div>
 
             <div className='theme3-sec3'>
-              <div>
+              <div style={!userdata.experience[0].company?{"gridColumn":"2/3"}:null}>
 
                 {userdata.experience[0].company ? <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>WORK EXPERIENCE</div>
@@ -128,7 +128,7 @@ function Creative() {
 
               </div>
 
-              <div>
+              <div style={!userdata.experience[0].company?{"gridColumn":"1/2","gridRow":"1/2"}:null}>
 
                 <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>SKILLS</div>

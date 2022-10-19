@@ -43,9 +43,6 @@
     transform: rotate(8deg);
     transition: all 0.5s ease-in-out;
 }
-.home-main>div>img:hover{
-    transform: rotate(0deg);
-}
 
 .steps{
     margin-top: 100px;
@@ -144,7 +141,13 @@
     color: purple;
 }
 
-@media screen and (max-width:450px) {
+@media screen and (min-width:510px) {
+    .home-main>div>img:hover{
+        transform: rotate(0deg);
+    }
+}
+
+@media screen and (max-width:500px) {
     .heading{
         font-size: 2.5rem;
     }
@@ -166,5 +169,8 @@
     }
     .home-main>div>img:nth-of-type(even){
         transform: rotate(-8deg);
+    }
+    .home-main>div>img:active{
+        transform: rotate(0deg);
     }
 }

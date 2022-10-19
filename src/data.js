@@ -37,14 +37,7 @@ export const userdata = {
       "yearto": "",
       "present": true
     },
-    {
-      "company": "Tata Consultancy Services",
-      "description": "It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-      "worktitle": "Web Developer",
-      "yearfrom": "09/20",
-      "yearto": "",
-      "present": true
-    }
+   
   ],
   link: {
     "linkedin": "https://twitter.com/Armankazi111",

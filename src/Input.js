@@ -14,7 +14,7 @@ function Input() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const[present,Setpresent]=useState([])
-    const [grade, Setgrade] = useState("percentage")
+    const [grade, Setgrade] = useState([])
     const [hint, Sethint] = useState("hint-hide")
     const emptydata = {
         experience: [{
@@ -103,15 +103,31 @@ function Input() {
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
+
+        userredux.experience.map((val,index)=>{
+            return(
+                val.present===true?
+                Setpresent(prev=>[...prev,index]):
+                null
+            )
+        })
+
+        userredux.education.map((val,index)=>{
+            return(
+                val.gradetype==="grade"?
+                Setgrade(prev=>[...prev,index]):
+                null
+            )
+        })
+
         loadFunc()
+        // eslint-disable-next-line
     }, [])
 
     const onSubmit = (data) => {
         dispatch(getuserdata(data))
         navigate("/selecttheme")
     }
-
-
 
 
     const checkboxFunc = (e,index) => {
@@ -130,6 +146,16 @@ function Input() {
         }
     }
 
+    const graderadioFunc=(e,index)=>{
+        const i = grade.includes(index)
+        if(i===false&&e.target.value==="grade"){
+            Setgrade(prev=>[...prev,index])
+        }else if(i===true&&e.target.value==="percentage"){
+            Setgrade(grade.map(
+                (val,i)=>val===index?"":val
+            ))
+        }
+    }
 
     const clrFunc = () => {
         dispatch(clruserdata())
@@ -159,7 +185,7 @@ function Input() {
                                 <input type={"url"} {...register("personal.image", { required: true })} placeholder="Paste your image url" />
                                 <div onMouseEnter={() => Sethint("hint")} onMouseLeave={() => Sethint("hint-hide")}>i</div>
                                 <div className={hint}>
-                                    You can copy and paste your github profile image url here.<br />
+                                    You can copy and paste your github/linkedin profile image url here.<br />
                                     By right clicking and copy image address
                                 </div>
                             </div>
@@ -262,7 +288,7 @@ function Input() {
                                     <React.Fragment key={item.id}>
                                         <div className="input-index">{index + 1}.</div>
                                         <input {...register(`course[${index}].name`)} defaultValue={item.name} placeholder="Course/Certificate Name" />
-                                        <input {...register(`course[${index}].provider`)} defaultValue={item.provider} placeholder="Course Provider" />
+                                        <input {...register(`course[${index}].provider`)} defaultValue={item.provider} placeholder="Course Provider Name" />
                                         {index !== 0 ?
                                             <div className="input-remove">
                                                 <div onClick={() => { courseRemove(index) }}>
@@ -287,18 +313,18 @@ function Input() {
                                         <input className="singlefield" {...register(`education[${index}].degree`, { required: true })} placeholder="College/Degree/Diploma Name" />
                                         <div className="edu-grade">
                                             <div>
-                                                <input name="grade" value="percentage" defaultChecked onClick={(e) => Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                                <input name="grade" value="percentage" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                                 <span className="input-span">Percentage?</span>
                                             </div>
                                             <div>/</div>
                                             <div>
-                                                <input name="grade" value="grade" onClick={(e) => Setgrade(e.target.value)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                                <input name="grade" value="grade" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                                 <span className="input-span">Grade?</span>
                                             </div>
                                         </div>
                                         <div className="grade-input">
                                             <input type={"number"} inputMode={"decimal"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
-                                            <>{grade === "percentage" ? " %" : " /10"}</>
+                                            <>{!grade.includes(index) ? " %" : " /10"}</>
                                         </div>
                                         <input className="singlefield" {...register(`education[${index}].university`, { required: true })} placeholder="Institute/University Name" />
                                         <div className="year">
