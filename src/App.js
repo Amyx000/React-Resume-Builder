@@ -11,6 +11,7 @@ import About from "./About";
 import Input from "./Input"
 import Selecttheme from "./Selecttheme";
 import Header from "./Header";
+import Modern from "./Themes/Modern";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/theme-creative/download' element={<Creative />} />
           <Route path='/theme-classic/download' element={<Classic />} />
           <Route path='/theme-minimalist/download' element={<Minimalist />} />
+          <Route path='/theme-modern/download' element={<Modern />} />
           <Route path='*' element={<Pagenotfount404 />} />
         </Routes>
       </BrowserRouter>

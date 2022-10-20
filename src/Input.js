@@ -267,7 +267,7 @@ function Input() {
                                     <React.Fragment key={item.id}>
                                         <div className="input-index">{index + 1}.</div>
                                         <input className="singlefield" {...register(`project[${index}].name`)} defaultValue={item.name} placeholder="Project Title" />
-                                        <input className="singlefield" {...register(`project[${index}].tech`)} defaultValue={item.tech} placeholder="Tech Used e.g Html, Javascript, Python" />
+                                        <input className="singlefield" {...register(`project[${index}].tech`)} defaultValue={item.tech} placeholder="Tech Used e.g Html, Javascript, Python (Use comma and space for multiple)" />
                                         {index !== 0 ?
                                             <div className="input-remove">
                                                 <div onClick={() => { projectRemove(index) }}>
@@ -356,7 +356,7 @@ function Input() {
                             <div className="input-head">Social/Links</div>
                             <input {...register("link.linkedin", { required: true })} placeholder="Linkedin Url" />
                             <input {...register("link.github", { required: true })} placeholder="Github Url" />
-                            <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url" />
+                            <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url or any other" />
 
                             {errors.personal || errors.education ?
                                 <span className="input-err singlefield">Please enter the required field</span> : null}
