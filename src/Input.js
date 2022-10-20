@@ -55,6 +55,8 @@ function Input() {
         }
     );
 
+    const eduerror = errors.education || []
+
     const {
         fields: interestFields,
         append: interestAppend,
@@ -98,27 +100,28 @@ function Input() {
         }, 1000)
     }
 
-
     useEffect(() => {
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
 
-        userredux.experience.map((val,index)=>{
-            return(
-                val.present===true?
-                Setpresent(prev=>[...prev,index]):
-                null
-            )
-        })
+        if(userredux.experience){
+            userredux.experience.map((val,index)=>{
+                return(
+                    val.present===true?
+                    Setpresent(prev=>[...prev,index]):
+                    null
+                )
+            })
 
-        userredux.education.map((val,index)=>{
-            return(
-                val.gradetype==="grade"?
-                Setgrade(prev=>[...prev,index]):
-                null
-            )
-        })
+            userredux.education.map((val,index)=>{
+                return(
+                    val.gradetype==="grade"?
+                    Setgrade(prev=>[...prev,index]):
+                    null
+                )
+            })
+       }
 
         loadFunc()
         // eslint-disable-next-line
@@ -161,7 +164,6 @@ function Input() {
         dispatch(clruserdata())
         reset(emptydata)
     }
-
 
     return (
         <>
@@ -313,14 +315,18 @@ function Input() {
                                         <input className="singlefield" {...register(`education[${index}].degree`, { required: true })} placeholder="College/Degree/Diploma Name" />
                                         <div className="edu-grade">
                                             <div>
-                                                <input name="grade" value="percentage" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                                <input name="gradetype" value="percentage" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                                 <span className="input-span">Percentage?</span>
                                             </div>
                                             <div>/</div>
                                             <div>
-                                                <input name="grade" value="grade" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
+                                                <input name="gradetype" value="grade" onClick={(e) => graderadioFunc(e,index)} {...register(`education[${index}].gradetype`, { required: true })} type={"radio"} />
                                                 <span className="input-span">Grade?</span>
                                             </div>
+                                            
+                                            {eduerror[index]?.gradetype?
+                                            <div className="input-err" style={{"gridColumn":"1/4","fontWeight":"400"}}>Please select percentage/grade</div> : null}
+                                            
                                         </div>
                                         <div className="grade-input">
                                             <input type={"number"} inputMode={"decimal"} step={"any"} min="0" max="100" {...register(`education[${index}].grade`, { required: true })} placeholder="Grade/Percentage" />
@@ -354,7 +360,6 @@ function Input() {
 
                             {errors.personal || errors.education ?
                                 <span className="input-err singlefield">Please enter the required field</span> : null}
-
                             {userredux.personal ? <div className="singlefield btndiv mt-3">
                                 <input className="input-btn" value={"Clear All"} onClick={clrFunc} />
                                 <input className="input-btn" type="submit" value={"Next"} />

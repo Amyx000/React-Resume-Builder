@@ -21,9 +21,6 @@
     transition: all 0.5s ease-in-out;
 }
 
-.theme-main>div>img:hover{
-    transform: perspective(3000px) rotateY(20deg);
-}
 
 .theme-main>div{
     text-align: center;
@@ -92,6 +89,11 @@
     padding: 10px;
 }
 
+@media screen and (min-width:500px) {
+    .theme-main>div>img:hover{
+        transform: perspective(3000px) rotateY(20deg);
+    }
+}
 
 @media screen and (max-width:750px){
     .theme-main{
@@ -114,4 +116,9 @@
     .clr-select>div>div{
         width: 40px;
     }
+    .theme-main>div>img:active{
+        transform: skew(2deg, 2deg);
+
+    }
+    
 }
