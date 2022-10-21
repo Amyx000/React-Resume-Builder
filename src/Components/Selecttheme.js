@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Selecttheme.css"
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
-import { getthemedata } from './Redux/Reducers/themeReducer';
+import { getthemedata } from '../Redux/Reducers/themeReducer';
 import axios from "axios"
 import BounceLoader from 'react-spinners/BounceLoader'
 

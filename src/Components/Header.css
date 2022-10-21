@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
 }
 
 .header>div:nth-child(2)>div{

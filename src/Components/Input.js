@@ -4,7 +4,7 @@ import { RiCloseFill } from "react-icons/ri"
 import "./Input.css";
 import { useForm, useFieldArray } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { clruserdata, getuserdata } from "./Redux/Reducers/userReducer";
+import { clruserdata, getuserdata } from "../Redux/Reducers/userReducer";
 import { useNavigate } from "react-router-dom";
 import BounceLoader from 'react-spinners/BounceLoader'
 

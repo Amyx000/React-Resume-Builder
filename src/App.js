@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./app.css"
-import Home from "./Home";
+import Home from "./Components/Home";
 import Classic from "./Themes/Classic";
 import Professional from "./Themes/Professional";
 import Creative from "./Themes/Creative";
 import Minimalist from "./Themes/Minimalist";
-import Pagenotfount404 from "./Pagenotfount404";
-import About from "./About";
-import Input from "./Input"
-import Selecttheme from "./Selecttheme";
-import Header from "./Header";
 import Modern from "./Themes/Modern";
+import Pagenotfount404 from "./Components/Pagenotfount404";
+import About from "./Components/About";
+import Input from "./Components/Input"
+import Selecttheme from "./Components/Selecttheme";
+import Header from "./Components/Header";
 
 function App() {
 
