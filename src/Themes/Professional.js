@@ -84,11 +84,13 @@ function Theme1() {
 
                                 <div>
                                     <div className='resume-head' style={{ color: themeclr }}>INTERESTS</div>
+                                    <ul className={"mt-1"}>
                                     {userdata.personal.interest.map((item, index) => {
                                         return (
-                                            <div key={index} className='resume-list'>{item.hobbie}</div>
+                                            <li key={index} className='' style={{"listStyle":"inside disc"}}>{item.hobbie}</li>
                                         )
                                     })}
+                                    </ul>
                                 </div>
                             </div>
                             <div className='sec2'>
@@ -107,7 +109,7 @@ function Theme1() {
                                                 <div key={index}>
                                                     <div className='font-bold resume-title' style={{ color: themeclr }}>{item.worktitle}</div>
                                                     <div className="resume-subhead">{item.company}</div>
-                                                    <div className='text-xs italic' style={{ color: themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
+                                                    <div className='text-xs italic mt-1' style={{ color: themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                                                     <div className='resume-des'>
                                                         <BiSquare style={{ color: themeclr }} />
                                                         <div>
@@ -128,7 +130,7 @@ function Theme1() {
                                             <div key={index} className='resume-des resume-proj'>
                                                 <BiSquare style={{ color: themeclr }} />
                                                 <div className='resume-courses project'>
-                                                    <div className='resume-title'>{item.name}</div>
+                                                    <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
                                                     <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                                                 </div>
                                             </div>
@@ -141,7 +143,7 @@ function Theme1() {
                                     {userdata.course.map((item, index) => {
                                         return (
                                             <div key={index} className='resume-courses'>
-                                                <div className='resume-title'>{item.name}</div>
+                                                <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                                             </div>
                                         )

@@ -176,8 +176,7 @@ function Input() {
                             <div className="input-head">Personal Details</div>
                             <input  {...register("personal.name", { required: true })} placeholder="Name" />
                             <input {...register("personal.lastname", { required: true })} placeholder="Last Name" />
-                            <input type={"date"}  {...register("personal.date", { required: true })} placeholder="Birthdate (dd-mm-yy)" />
-                            <input className="input-mob" type={"number"} inputMode={"tel"} {...register("personal.mob", { maxLength: 10, required: true })} placeholder="Mobile No- +91" />
+                            <input className="input-mob singlefield" type={"number"} inputMode={"tel"} {...register("personal.mob", { maxLength: 10, required: true })} placeholder="Mobile No- +91" />
                             <input className="singlefield" type={"email"} inputMode={"email"} {...register("personal.email", { required: true })} placeholder="Email" />
                             <input  {...register("personal.city", { required: true })} placeholder="City" />
                             <input  {...register("personal.country", { required: true })} placeholder="Country" />
@@ -185,7 +184,7 @@ function Input() {
                             <input {...register("personal.quote", { required: true })} placeholder="Describe yourself in one or two line" />
                             <div className="singlefield form-img">
                                 <input type={"url"} {...register("personal.image", { required: true })} placeholder="Paste your image url" />
-                                <div onMouseEnter={() => Sethint("hint")} onMouseLeave={() => Sethint("hint-hide")}>i</div>
+                                <div onMouseEnter={() => Sethint("hint")} onTouchEnd={() => Sethint("hint-hide")} onTouchStart={() => Sethint("hint")} onMouseLeave={() => Sethint("hint-hide")}>i</div>
                                 <div className={hint}>
                                     You can copy and paste your github/linkedin profile image url here.<br />
                                     By right clicking and copy image address
@@ -197,7 +196,7 @@ function Input() {
                                 {interestFields.map((item, index) => {
                                     return (
                                         <div key={item.id}>
-                                            <input {...register(`personal.interest[${index}].hobbie`, { required: true })} defaultValue={item.hobbie} placeholder="Interest/Hobbies" />
+                                            <input {...register(`personal.interest[${index}].hobbie`, { required: true })} defaultValue={item.hobbie} placeholder="Interest/Hobbies e.g Chess" />
                                             {index !== 0 ? <RiCloseFill onClick={() => { interestRemove(index) }} className="interest-cls-icon" /> : null}
                                         </div>
                                     )
@@ -211,7 +210,7 @@ function Input() {
                             {technicalFields.map((item, index) => {
                                 return (
                                     <React.Fragment key={item.id}>
-                                        <input {...register(`personal.technicalskill[${index}].skill`, { required: true })} defaultValue={item.skill} placeholder="Technical Skills" />
+                                        <input {...register(`personal.technicalskill[${index}].skill`, { required: true })} defaultValue={item.skill} placeholder="Technical Skills e.g Javascript" />
                                         <input type={"number"} inputMode={"decimal"} min="0" max="10" {...register(`personal.technicalskill[${index}].rate`, { required: true })} defaultValue={item.rate} placeholder="Rate your skill out of 10" />
                                         {index !== 0 ?
                                             <div className="input-remove">
@@ -236,7 +235,7 @@ function Input() {
                                         <div className="input-index">{index + 1}.</div>
                                         <input {...register(`experience[${index}].worktitle`)} defaultValue={item.worktitle} placeholder="Title/Position" />
                                         <input {...register(`experience[${index}].company`)} defaultValue={item.company} placeholder="Workplace/Company" />
-                                        <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description" />
+                                        <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description about your work in one or two line" />
                                         <div className="year">
                                             <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
                                             {!present.includes(index)?
@@ -267,7 +266,7 @@ function Input() {
                                     <React.Fragment key={item.id}>
                                         <div className="input-index">{index + 1}.</div>
                                         <input className="singlefield" {...register(`project[${index}].name`)} defaultValue={item.name} placeholder="Project Title" />
-                                        <input className="singlefield" {...register(`project[${index}].tech`)} defaultValue={item.tech} placeholder="Tech Used e.g Html, Javascript, Python (Use comma and space for multiple)" />
+                                        <input className="singlefield" {...register(`project[${index}].tech`)} defaultValue={item.tech} placeholder="Tech Used e.g Html, Python (Use comma and space)" />
                                         {index !== 0 ?
                                             <div className="input-remove">
                                                 <div onClick={() => { projectRemove(index) }}>

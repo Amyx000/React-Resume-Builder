@@ -48,7 +48,7 @@ function Classic() {
                         <div className={"mb-4"}>
                             <div>
                                 <div className='text-3xl' style={{ color: themeclr, "fontWeight": "bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
-                                <div style={{ color: "gray", "fontSize": "19px" }}>{userdata.personal.title}</div>
+                                <div style={{ color: themeclr, "fontSize": "19px" }}>{userdata.personal.title}</div>
                                 <div className={"mt-1 text-left"}>{userdata.personal.quote} asja akjks let check it out how the css is working
                                     is it working fine? has been the industry's</div>
                             </div>
@@ -80,7 +80,7 @@ function Classic() {
                                 {userdata.experience.map((item, index) => {
                                     return (
                                         <div key={index}>
-                                            <div className='font-bold' style={{ color: themeclr, "fontSize": "14px" }}>{item.worktitle}</div>
+                                            <div className='font-bold' style={{"fontSize": "14px" }}>{item.worktitle}</div>
                                             <div style={{ "fontSize": "14px" }}>{item.company}</div>
                                             <div className='text-xs italic' style={{ color: themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                                             <div>
@@ -101,7 +101,7 @@ function Classic() {
                                         <div key={index} className='theme2-proj'>
                                             <BiSquare style={{ color: themeclr }} />
                                             <div>
-                                                <div className='resume-title'>{item.name}</div>
+                                                <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                                             </div>
                                         </div>
@@ -134,7 +134,7 @@ function Classic() {
                                 {userdata.course.map((item, index) => {
                                     return (
                                         <div key={index}>
-                                            <div className='resume-title'>{item.name}</div>
+                                            <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
                                             <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                                         </div>
                                     )

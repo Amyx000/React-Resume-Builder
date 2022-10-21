@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Minimalist() {
-    const themeclr = "#3B6C8F"
+    const themeclr = useSelector(state => state.theme.theme.color)
     const smallclr = "#F26464"
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
@@ -92,8 +92,8 @@ function Minimalist() {
                         <div className='theme4-sec2'>
 
                             <div>
-                                <div className={"text-3xl"} style={{ "color": themeclr }}>{userdata.personal.name} {userdata.personal.lastname}</div>
-                                <div style={{ "color": smallclr, "fontSize": "15px" }}>{userdata.personal.title}</div>
+                                <div className={"text-3xl"} style={{ "color": themeclr,"fontWeight":"bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
+                                <div style={{ "color": smallclr, "fontSize": "15px"}}>{userdata.personal.title}</div>
                                 <div className={"pt-2 pb-2"}>{userdata.personal.quote}</div>
                                 <div style={{ "display": "grid", "gridTemplateColumns": "1fr 1fr", "rowGap": "10px" }}>
                                     <div className='theme4-icondiv'>
@@ -153,8 +153,8 @@ function Minimalist() {
                                     {userdata.project.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <div style={{ "fontSize": "14px" }}>{item.name}</div>
-                                                <div className={"text-xs"} style={{ color: smallclr }}>{item.tech}</div>
+                                                <div style={{ "fontSize": "14px","fontWeight":"bold"}}>{item.name}</div>
+                                                <div className={"text-xs"} style={{ color: smallclr}}>{item.tech}</div>
                                             </div>
                                         )
                                     })}
@@ -170,8 +170,8 @@ function Minimalist() {
                                     {userdata.course.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <div style={{ "fontSize": "14px" }}>{item.name}</div>
-                                                <div className={"text-xs"} style={{ color: smallclr }}>{item.provider}</div>
+                                                <div style={{ "fontSize": "14px","fontWeight":"bold"}}>{item.name}</div>
+                                                <div className={"text-xs"} style={{ color: smallclr}}>{item.provider}</div>
                                             </div>
                                         )
                                     })}

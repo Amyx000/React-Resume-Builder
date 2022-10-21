@@ -143,7 +143,7 @@ function Creative() {
                                 return (
                                   <React.Fragment key={index}>
                                     {item.rate < i ? <div style={{ "color": themeclr }}><div></div></div> :
-                                      <div style={{ "color": themeclr }}><div style={{ "color": themeclr, "backgroundColor": "gray" }}></div></div>}
+                                      <div style={{ "color": themeclr }}><div style={{ "color": themeclr, "backgroundColor": themeclr }}></div></div>}
                                   </React.Fragment>
 
                                 )
@@ -162,7 +162,7 @@ function Creative() {
                     {userdata.project.map((item, index) => {
                       return (
                         <div key={index}>
-                          <div style={{ "fontSize": "14px" }}>{item.name}</div>
+                          <div style={{ "fontSize": "14px", "fontWeight":"bold" }}>{item.name}</div>
                           <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                         </div>
                       )
@@ -176,7 +176,7 @@ function Creative() {
                     {userdata.course.map((item, index) => {
                       return (
                         <div key={index}>
-                          <div style={{ "fontSize": "14px" }}>{item.name}</div>
+                          <div style={{ "fontSize": "14px", "fontWeight":"bold"  }}>{item.name}</div>
                           <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                         </div>
                       )
