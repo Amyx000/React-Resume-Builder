@@ -13,7 +13,6 @@ function Theme1() {
     const navigate = useNavigate()
     const userdata=useSelector(state=>state.user.userdata)
     const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
-    console.log("abc",themeclr)
     const [loading, setLoading] = useState(true);
     const[loadhint,setloadhint]=useState("")
 
