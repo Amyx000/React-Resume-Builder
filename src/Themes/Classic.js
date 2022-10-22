@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Classic() {
-    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
+    const themeclr = useSelector(state => state.theme?.theme?.color) || "#643baa"
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     const userdata = useSelector(state => state.user.userdata)
@@ -158,13 +158,13 @@ function Classic() {
                         <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>INTERESTS/HOBBY</div>
                             <div className='section-content'>
-                                <div className='theme2-interest'>
+                                <ul style={{ "display": "grid","justifyItems":"center", "gridTemplateColumns": "repeat(auto-fit, minmax(25%,1fr)", "paddingBottom": "20px" }}>
                                     {userdata.personal.interest.map((item, index) => {
                                         return (
-                                            <div key={index} style={{ "color": "black", "border": `1px solid ${themeclr}`, "borderRadius": "5px", "padding": "3px", "fontSize": "12px" }}>{item.hobbie}</div>
+                                            <li key={index} style={{ "listStyle": "outside disc" }}>{item.hobbie}</li>
                                         )
                                     })}
-                                </div>
+                                </ul>
                             </div>
                         </div>
                     </div>
