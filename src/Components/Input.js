@@ -355,7 +355,7 @@ function Input() {
                             <div className="input-head">Social/Links</div>
                             <input {...register("link.linkedin", { required: true })} placeholder="Linkedin Url" />
                             <input {...register("link.github", { required: true })} placeholder="Github Url" />
-                            <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url or any other" />
+                            <input className="singlefield" {...register("link.portfolio")} placeholder="Porfolio Url or any other (Optional)" />
 
                             {errors.personal || errors.education ?
                                 <span className="input-err singlefield">Please enter the required field</span> : null}

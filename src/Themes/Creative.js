@@ -13,15 +13,24 @@ import "./Creative.css"
 
 function Creative() {
   const [loading, setLoading] = useState(true);
-  const themeclr = useSelector(state => state.theme.theme.color)
+  const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
   const navigate = useNavigate()
   const userdata = useSelector(state => state.user.userdata)
+  const [loadhint, setloadhint] = useState("")
 
   const loadFunc = () => {
+    const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
     setLoading(true)
+    hints.map((item, index) => {
+      return (
+        setTimeout(() => {
+          setloadhint(item)
+        }, 3000 * index)
+      )
+    })
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 6000)
   }
 
   useEffect(() => {
@@ -39,7 +48,11 @@ function Creative() {
 
   return (
     <>
-      {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
+      {loading ?
+        <>
+          <BounceLoader className='loader' color="#643baa" size={150} />
+          <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+        </> :
         <>
           <div className='noprint'>
             <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
@@ -88,7 +101,7 @@ function Creative() {
             </div>
 
             <div className='theme3-sec3'>
-              <div style={!userdata.experience[0].company?{"gridColumn":"2/3"}:null}>
+              <div style={!userdata.experience[0].company ? { "gridColumn": "2/3" } : null}>
 
                 {userdata.experience[0].company ? <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>WORK EXPERIENCE</div>
@@ -128,7 +141,7 @@ function Creative() {
 
               </div>
 
-              <div style={!userdata.experience[0].company?{"gridColumn":"1/2","gridRow":"1/2"}:null}>
+              <div style={!userdata.experience[0].company ? { "gridColumn": "1/2", "gridRow": "1/2" } : null}>
 
                 <div className='theme3-sec'>
                   <div className='theme3-head' style={{ "color": themeclr }}>SKILLS</div>
@@ -139,7 +152,7 @@ function Creative() {
                           <React.Fragment key={index}>
                             <div>{item.skill}</div>
                             <div className='theme3-rate'>
-                              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i,index) => {
+                              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i, index) => {
                                 return (
                                   <React.Fragment key={index}>
                                     {item.rate < i ? <div style={{ "color": themeclr }}><div></div></div> :
@@ -162,7 +175,7 @@ function Creative() {
                     {userdata.project.map((item, index) => {
                       return (
                         <div key={index}>
-                          <div style={{ "fontSize": "14px", "fontWeight":"bold" }}>{item.name}</div>
+                          <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
                           <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                         </div>
                       )
@@ -176,7 +189,7 @@ function Creative() {
                     {userdata.course.map((item, index) => {
                       return (
                         <div key={index}>
-                          <div style={{ "fontSize": "14px", "fontWeight":"bold"  }}>{item.name}</div>
+                          <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
                           <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                         </div>
                       )

@@ -18,19 +18,28 @@ import { useSelector } from 'react-redux'
 
 function Modern() {
     const navigate = useNavigate()
-    const userdata=useSelector(state=>state.user.userdata)
-    const themeclr = useSelector(state => state.theme.theme.color)
+    const userdata = useSelector(state => state.user.userdata)
+    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
     const [loading, setLoading] = useState(true);
+    const [loadhint, setloadhint] = useState("")
 
     const loadFunc = () => {
+        const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
         setLoading(true)
+        hints.map((item, index) => {
+            return (
+                setTimeout(() => {
+                    setloadhint(item)
+                }, 3000 * index)
+            )
+        })
         setTimeout(() => {
             setLoading(false)
-        }, 3000)
+        }, 6000)
     }
 
     useEffect(() => {
-        if(!userdata.personal){navigate("/")}
+        if (!userdata.personal) { navigate("/") }
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
@@ -44,7 +53,11 @@ function Modern() {
 
     return (
         <>
-            {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
+            {loading ?
+                <>
+                    <BounceLoader className='loader' color="#643baa" size={150} />
+                    <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+                </> :
                 <>
                     <div className='noprint'>
                         <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
@@ -216,7 +229,7 @@ function Modern() {
 
                             <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white" }}></div>
                             <div className='theme5-content-sec'>
-                                <ul style={{ "display": "grid", "gridTemplateColumns": "1fr 1fr 1fr 1fr","paddingBottom":"20px" }}>
+                                <ul style={{ "display": "grid", "gridTemplateColumns": "1fr 1fr 1fr 1fr", "paddingBottom": "20px" }}>
                                     {userdata.personal.interest.map((item, index) => {
                                         return (
                                             <li key={index} style={{ "listStyle": "inside disc" }}>{item.hobbie}</li>

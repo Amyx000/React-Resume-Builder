@@ -12,14 +12,24 @@ import { Link, useNavigate } from 'react-router-dom'
 function Theme1() {
     const navigate = useNavigate()
     const userdata=useSelector(state=>state.user.userdata)
-    const themeclr = useSelector(state => state.theme.theme.color)
+    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
+    console.log("abc",themeclr)
     const [loading, setLoading] = useState(true);
+    const[loadhint,setloadhint]=useState("")
 
     const loadFunc = () => {
+        const hints = ["Please wait your resume is in process...","Hint: Entering the complete details will make your resume looks awesome"]
         setLoading(true)
+        hints.map((item,index)=>{
+            return(
+                setTimeout(() => {
+                    setloadhint(item)
+                }, 3000*index)
+            )
+        })
         setTimeout(() => {
             setLoading(false)
-        }, 3000)
+        }, 6000)
     }
 
     useEffect(() => {
@@ -37,7 +47,11 @@ function Theme1() {
 
     return (
         <>
-            {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
+            {loading ? 
+            <>
+                <BounceLoader className='loader' color="#643baa" size={150} />
+                <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+            </> :
                 <>
                     <div className='noprint'>
                         <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>

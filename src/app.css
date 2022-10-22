@@ -49,7 +49,11 @@ body{
 }
 
 .loader{
-    margin: 30vh auto;
+    margin: 30vh auto 0;
+}
+.loader-hint{
+    color: var(--light);
+    text-align: center;
 }
 
 .noprint{
@@ -64,7 +68,15 @@ body{
 }
 
 
-@media print{
+@media print {
+    body{
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    @page {
+        size: auto;
+        margin: 0mm;  
+    }
     .noprint{
         display: none;
     }

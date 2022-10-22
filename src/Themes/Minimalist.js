@@ -13,17 +13,26 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Minimalist() {
-    const themeclr = useSelector(state => state.theme.theme.color)
+    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
     const smallclr = "#F26464"
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
     const userdata = useSelector(state => state.user.userdata)
+    const [loadhint, setloadhint] = useState("")
 
     const loadFunc = () => {
+        const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
         setLoading(true)
+        hints.map((item, index) => {
+            return (
+                setTimeout(() => {
+                    setloadhint(item)
+                }, 3000 * index)
+            )
+        })
         setTimeout(() => {
             setLoading(false)
-        }, 3000)
+        }, 6000)
     }
 
     useEffect(() => {
@@ -41,7 +50,11 @@ function Minimalist() {
 
     return (
         <>
-            {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
+            {loading ?
+                <>
+                    <BounceLoader className='loader' color="#643baa" size={150} />
+                    <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+                </> :
                 <>
                     <div className='noprint'>
                         <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
@@ -92,8 +105,8 @@ function Minimalist() {
                         <div className='theme4-sec2'>
 
                             <div>
-                                <div className={"text-3xl"} style={{ "color": themeclr,"fontWeight":"bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
-                                <div style={{ "color": smallclr, "fontSize": "15px"}}>{userdata.personal.title}</div>
+                                <div className={"text-3xl"} style={{ "color": themeclr, "fontWeight": "bold" }}>{userdata.personal.name} {userdata.personal.lastname}</div>
+                                <div style={{ "color": smallclr, "fontSize": "15px" }}>{userdata.personal.title}</div>
                                 <div className={"pt-2 pb-2"}>{userdata.personal.quote}</div>
                                 <div style={{ "display": "grid", "gridTemplateColumns": "1fr 1fr", "rowGap": "10px" }}>
                                     <div className='theme4-icondiv'>
@@ -123,7 +136,7 @@ function Minimalist() {
                                 </div>
                             </div>
 
-                            {userdata.experience[0].company?<div className='theme4-sec'>
+                            {userdata.experience[0].company ? <div className='theme4-sec'>
                                 <div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", gap: "7px" }}>
                                     <CgShapeRhombus className={"text-lg"} style={{ "color": themeclr }} />
                                     <div className='theme4-head' style={{ "color": themeclr }}>WORK EXPERIENCE</div>
@@ -142,7 +155,7 @@ function Minimalist() {
                                         )
                                     })}
                                 </div>
-                            </div>:null}
+                            </div> : null}
 
                             {userdata.project[0].name ? <div className='theme4-sec'>
                                 <div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", gap: "7px" }}>
@@ -153,8 +166,8 @@ function Minimalist() {
                                     {userdata.project.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <div style={{ "fontSize": "14px","fontWeight":"bold"}}>{item.name}</div>
-                                                <div className={"text-xs"} style={{ color: smallclr}}>{item.tech}</div>
+                                                <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
+                                                <div className={"text-xs"} style={{ color: smallclr }}>{item.tech}</div>
                                             </div>
                                         )
                                     })}
@@ -170,8 +183,8 @@ function Minimalist() {
                                     {userdata.course.map((item, index) => {
                                         return (
                                             <div key={index}>
-                                                <div style={{ "fontSize": "14px","fontWeight":"bold"}}>{item.name}</div>
-                                                <div className={"text-xs"} style={{ color: smallclr}}>{item.provider}</div>
+                                                <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
+                                                <div className={"text-xs"} style={{ color: smallclr }}>{item.provider}</div>
                                             </div>
                                         )
                                     })}

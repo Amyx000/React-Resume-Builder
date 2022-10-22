@@ -11,20 +11,29 @@ import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 function Classic() {
-    const themeclr = useSelector(state => state.theme.theme.color)
+    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
-    const userdata=useSelector(state=>state.user.userdata)
+    const userdata = useSelector(state => state.user.userdata)
+    const [loadhint, setloadhint] = useState("")
 
     const loadFunc = () => {
+        const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
         setLoading(true)
+        hints.map((item, index) => {
+            return (
+                setTimeout(() => {
+                    setloadhint(item)
+                }, 3000 * index)
+            )
+        })
         setTimeout(() => {
             setLoading(false)
-        }, 3000)
+        }, 6000)
     }
 
     useEffect(() => {
-        if(!userdata.personal){navigate("/")}
+        if (!userdata.personal) { navigate("/") }
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
@@ -37,7 +46,11 @@ function Classic() {
     }
     return (
         <>
-            {loading ? <BounceLoader className='loader' color="#643baa" size={150} /> :
+            {loading ?
+                <>
+                    <BounceLoader className='loader' color="#643baa" size={150} />
+                    <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+                </> :
                 <>
                     <div className='noprint'>
                         <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
@@ -80,7 +93,7 @@ function Classic() {
                                 {userdata.experience.map((item, index) => {
                                     return (
                                         <div key={index}>
-                                            <div className='font-bold' style={{"fontSize": "14px" }}>{item.worktitle}</div>
+                                            <div className='font-bold' style={{ "fontSize": "14px" }}>{item.worktitle}</div>
                                             <div style={{ "fontSize": "14px" }}>{item.company}</div>
                                             <div className='text-xs italic' style={{ color: themeclr }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                                             <div>
@@ -101,7 +114,7 @@ function Classic() {
                                         <div key={index} className='theme2-proj'>
                                             <BiSquare style={{ color: themeclr }} />
                                             <div>
-                                                <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
+                                                <div className='resume-title' style={{ "fontWeight": "bold" }}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
                                             </div>
                                         </div>
@@ -134,7 +147,7 @@ function Classic() {
                                 {userdata.course.map((item, index) => {
                                     return (
                                         <div key={index}>
-                                            <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
+                                            <div className='resume-title' style={{ "fontWeight": "bold" }}>{item.name}</div>
                                             <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                                         </div>
                                     )
