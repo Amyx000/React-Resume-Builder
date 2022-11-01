@@ -38,7 +38,7 @@ function Input() {
             title: "", quote: ""
         },
         project: [{
-            name: "", tech: ""
+            name: "", tech: "",des:""
         }],
         link: {
             linkedin: "",
@@ -267,6 +267,7 @@ function Input() {
                                         <div className="input-index">{index + 1}.</div>
                                         <input className="singlefield" {...register(`project[${index}].name`)} defaultValue={item.name} placeholder="Project Title" />
                                         <input className="singlefield" {...register(`project[${index}].tech`)} defaultValue={item.tech} placeholder="Tech Used e.g Html, Python (Use comma and space)" />
+                                        <input className="singlefield" {...register(`project[${index}].des`)} defaultValue={item.name} placeholder="Project Description (Optional)" />
                                         {index !== 0 ?
                                             <div className="input-remove">
                                                 <div onClick={() => { projectRemove(index) }}>

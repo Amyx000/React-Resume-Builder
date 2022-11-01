@@ -139,6 +139,7 @@ function Modern() {
                                         <div className='theme5-content-sec'>
                                             <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.name}</div>
                                             <div className={"mt-1 text-xs"} style={{ "color": themeclr }}>{item.tech}</div>
+                                            {item.des?<div className={'mt-1'}>{item.des}</div>:null}
                                         </div>
                                     </React.Fragment>
                                 )

@@ -177,6 +177,7 @@ function Creative() {
                         <div key={index}>
                           <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
                           <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
+                          {item.des?<div className={'mt-1'}>{item.des}</div>:null}
                         </div>
                       )
                     })}

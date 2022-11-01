@@ -116,6 +116,7 @@ function Classic() {
                                             <div>
                                                 <div className='resume-title' style={{ "fontWeight": "bold" }}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
+                                                {item.des ? <div className={'mt-1'}>{item.des}</div> : null}
                                             </div>
                                         </div>
                                     )
@@ -158,7 +159,7 @@ function Classic() {
                         <div className='theme2-section'>
                             <div className='section-head' style={{ "color": themeclr }}>INTERESTS/HOBBY</div>
                             <div className='section-content'>
-                                <ul style={{ "display": "grid","justifyItems":"center", "gridTemplateColumns": "repeat(auto-fit, minmax(25%,1fr)", "paddingBottom": "20px" }}>
+                                <ul style={{ "display": "grid", "justifyItems": "center", "gridTemplateColumns": "repeat(auto-fit, minmax(25%,1fr)", "paddingBottom": "20px" }}>
                                     {userdata.personal.interest.map((item, index) => {
                                         return (
                                             <li key={index} style={{ "listStyle": "outside disc" }}>{item.hobbie}</li>

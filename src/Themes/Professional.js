@@ -11,19 +11,19 @@ import { Link, useNavigate } from 'react-router-dom'
 
 function Theme1() {
     const navigate = useNavigate()
-    const userdata=useSelector(state=>state.user.userdata)
-    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
+    const userdata = useSelector(state => state.user.userdata)
+    const themeclr = useSelector(state => state.theme?.theme?.color) || "#643baa"
     const [loading, setLoading] = useState(true);
-    const[loadhint,setloadhint]=useState("")
+    const [loadhint, setloadhint] = useState("")
 
     const loadFunc = () => {
-        const hints = ["Please wait your resume is in process...","Hint: Entering the complete details will make your resume looks awesome"]
+        const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
         setLoading(true)
-        hints.map((item,index)=>{
-            return(
+        hints.map((item, index) => {
+            return (
                 setTimeout(() => {
                     setloadhint(item)
-                }, 3000*index)
+                }, 3000 * index)
             )
         })
         setTimeout(() => {
@@ -32,7 +32,7 @@ function Theme1() {
     }
 
     useEffect(() => {
-        if(!userdata.personal){navigate("/")}
+        if (!userdata.personal) { navigate("/") }
         window.scrollTo({
             top: 0, left: 0, behavior: "smooth"
         })
@@ -46,11 +46,11 @@ function Theme1() {
 
     return (
         <>
-            {loading ? 
-            <>
-                <BounceLoader className='loader' color="#643baa" size={150} />
-                <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
-            </> :
+            {loading ?
+                <>
+                    <BounceLoader className='loader' color="#643baa" size={150} />
+                    <div className='loader-hint mt-2 font-bold'>{loadhint}</div>
+                </> :
                 <>
                     <div className='noprint'>
                         <Link to={"/resumebuild"}><button className='print-btn'>Edit Data</button></Link>
@@ -98,11 +98,11 @@ function Theme1() {
                                 <div>
                                     <div className='resume-head' style={{ color: themeclr }}>INTERESTS</div>
                                     <ul className={"mt-1"}>
-                                    {userdata.personal.interest.map((item, index) => {
-                                        return (
-                                            <li key={index} className='' style={{"listStyle":"inside disc"}}>{item.hobbie}</li>
-                                        )
-                                    })}
+                                        {userdata.personal.interest.map((item, index) => {
+                                            return (
+                                                <li key={index} className='' style={{ "listStyle": "inside disc" }}>{item.hobbie}</li>
+                                            )
+                                        })}
                                     </ul>
                                 </div>
                             </div>
@@ -143,8 +143,9 @@ function Theme1() {
                                             <div key={index} className='resume-des resume-proj'>
                                                 <BiSquare style={{ color: themeclr }} />
                                                 <div className='resume-courses project'>
-                                                    <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
+                                                    <div className='resume-title' style={{ "fontWeight": "bold" }}>{item.name}</div>
                                                     <div className={"text-xs"} style={{ color: themeclr }}>{item.tech}</div>
+                                                    {item.des ? <div className={'mt-1'}>{item.des}</div> : null}
                                                 </div>
                                             </div>
                                         )
@@ -156,7 +157,7 @@ function Theme1() {
                                     {userdata.course.map((item, index) => {
                                         return (
                                             <div key={index} className='resume-courses'>
-                                                <div className='resume-title' style={{"fontWeight":"bold"}}>{item.name}</div>
+                                                <div className='resume-title' style={{ "fontWeight": "bold" }}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: themeclr }}>{item.provider}</div>
                                             </div>
                                         )
@@ -180,7 +181,7 @@ function Theme1() {
                                     })}
 
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

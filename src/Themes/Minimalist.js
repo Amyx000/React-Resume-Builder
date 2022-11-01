@@ -13,7 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 function Minimalist() {
-    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
+    const themeclr = useSelector(state => state.theme?.theme?.color) || "#643baa"
     const smallclr = "#F26464"
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate()
@@ -168,6 +168,7 @@ function Minimalist() {
                                             <div key={index}>
                                                 <div style={{ "fontSize": "14px", "fontWeight": "bold" }}>{item.name}</div>
                                                 <div className={"text-xs"} style={{ color: smallclr }}>{item.tech}</div>
+                                                {item.des ? <div className={'mt-1'}>{item.des}</div> : null}
                                             </div>
                                         )
                                     })}
