@@ -137,7 +137,9 @@ function Modern() {
                                 return (
                                     <React.Fragment key={index}>
                                         <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white", "padding": "10px 10px 0" }}>
-                                            {item.link && <a href={item.link} target={"_blank"} rel="noopener noreferrer" style={{"display":"flex","alignItems":"center","justifyContent":"flex-end","gap":"5px"}} className={"italic"}>Link<TbExternalLink/></a>}
+                                            <div style={{"display":"flex","justifyContent":"flex-end"}}>
+                                                {item.link && <a href={item.link} target={"_blank"} rel="noopener noreferrer" style={{"width":"max-content","display":"flex","alignItems":"center","justifyContent":"flex-end","gap":"5px"}} className={"italic"}>Link<TbExternalLink/></a>}
+                                            </div>
                                         </div>
                                         <div className='theme5-content-sec'>
                                             <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.name}</div>
