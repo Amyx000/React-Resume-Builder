@@ -10,6 +10,7 @@ import { MdOutlineWorkOutline } from "react-icons/md"
 import { HiOutlineAcademicCap, HiOutlinePuzzle } from "react-icons/hi"
 import { IoConstructOutline } from "react-icons/io5"
 import { RiMedalLine } from 'react-icons/ri'
+import {TbExternalLink} from "react-icons/tb"
 import BounceLoader from "react-spinners/BounceLoader"
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -135,7 +136,9 @@ function Modern() {
                             {userdata.project.map((item, index) => {
                                 return (
                                     <React.Fragment key={index}>
-                                        <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white", "padding": "10px 10px 0", "textAlign": "end" }}></div>
+                                        <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white", "padding": "10px 10px 0" }}>
+                                            {item.link && <a href={item.link} target={"_blank"} rel="noopener noreferrer" style={{"display":"flex","alignItems":"center","justifyContent":"flex-end","gap":"5px"}} className={"italic"}>Link<TbExternalLink/></a>}
+                                        </div>
                                         <div className='theme5-content-sec'>
                                             <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.name}</div>
                                             <div className={"mt-1 text-xs"} style={{ "color": themeclr }}>{item.tech}</div>
