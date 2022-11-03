@@ -155,8 +155,8 @@ function Creative() {
                               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i, index) => {
                                 return (
                                   <React.Fragment key={index}>
-                                    {item.rate < i ? <div style={{ "color": themeclr }}><div></div></div> :
-                                      <div style={{ "color": themeclr }}><div style={{ "color": themeclr, "backgroundColor": themeclr }}></div></div>}
+                                    {item.rate < i ? <div className='theme3-ratediv' style={{ "color": themeclr }}><div className='theme3-ratediv-inner'></div></div> :
+                                      <div className='theme3-ratediv' style={{ "color": themeclr }}><div className='theme3-ratediv-inner' style={{ "color": themeclr, "backgroundColor": themeclr }}></div></div>}
                                   </React.Fragment>
 
                                 )
