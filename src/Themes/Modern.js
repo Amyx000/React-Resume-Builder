@@ -23,6 +23,7 @@ function Modern() {
     const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
     const [loading, setLoading] = useState(true);
     const [loadhint, setloadhint] = useState("")
+    const [skillstyle,Setskillstyle]=useState("style1")
 
     const loadFunc = () => {
         const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
@@ -204,12 +205,15 @@ function Modern() {
                             <div style={{ "backgroundColor": themeclr, "color": "white" }}></div>
                             <div className='theme5-head-sec'>
                                 <div style={{ "backgroundColor": themeclr }}><HiOutlinePuzzle style={{ "color": "white", "fontSize": "18px" }} /></div>
-                                <div className='theme5-head' style={{ "color": themeclr }}>SKILLS</div>
+                                <div className='theme5-head' style={{ "color": themeclr }}>
+                                     SKILLS
+                                     <button className='btn-noprint' style={{"marginLeft":"10px","padding":"1px 3px","fontSize":"13px","backgroundColor":themeclr,"color":"white","borderRadius":"4px","fontWeight":"400"}} onClick={()=>Setskillstyle((prev)=>prev==="style1"?"style2":"style1")}>Change Look</button>
+                                </div>
                             </div>
 
                             <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white" }}></div>
                             <div className='theme5-content-sec'>
-                                <div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", "rowGap": "5px", "columnGap": "10px" }}>
+                                {skillstyle==="style1"?<div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", "rowGap": "5px", "columnGap": "10px" }}>
                                     {userdata.personal.technicalskill.map((item, index) => {
                                         return (
                                             <React.Fragment key={index}>
@@ -220,7 +224,18 @@ function Modern() {
                                             </React.Fragment>
                                         )
                                     })}
-                                </div>
+                                </div>:
+
+                                <div style={{"display":"grid","gridTemplateColumns":"repeat(3,1fr)", "rowGap":"5px"}}>
+                                    {userdata.personal.technicalskill.map((item,index)=>{
+                                        return(
+                                            <div key={index}>
+                                                <div style={{"color":themeclr,"fontSize":"14px"}}>{item.skill}</div>
+                                                <div className={"text-xs"} >{item.rate>=10?"Advanced":(item.rate<5?"Beginner":"Intermediate")}</div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>}
                             </div>
 
                         </div>

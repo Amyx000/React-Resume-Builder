@@ -39,3 +39,9 @@
 .theme5-content-sec{
     padding: 10px 10px 0 25px;
 }
+
+@media print{
+    .btn-noprint{
+        display: none;
+    }
+}
