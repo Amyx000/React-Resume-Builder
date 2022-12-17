@@ -18,7 +18,7 @@ function Input() {
     const [hint, Sethint] = useState("hint-hide")
     const emptydata = {
         experience: [{
-            company: "", description: "", worktitle: "", yearfrom: "", yearto: "", present: false
+            company: "", description: "", worktitle: "",tags:"", yearfrom: "", yearto: "", present: false
         }],
         course: [{
             name: "", provider: ""
@@ -236,6 +236,7 @@ function Input() {
                                         <input {...register(`experience[${index}].worktitle`)} defaultValue={item.worktitle} placeholder="Title/Position" />
                                         <input {...register(`experience[${index}].company`)} defaultValue={item.company} placeholder="Workplace/Company" />
                                         <input className="singlefield" {...register(`experience[${index}].description`)} defaultValue={item.description} placeholder="Description about your work in one or two line" />
+                                        <input className="singlefield" {...register(`experience[${index}].tags`)} defaultValue={item.tags} placeholder="Link, Tags, Tech-stack or anything" />
                                         <div className="year">
                                             <input name="year" inputMode={"numeric"} {...register(`experience[${index}].yearfrom`)} defaultValue={item.yearfrom} placeholder="mm/yy" />
                                             {!present.includes(index)?

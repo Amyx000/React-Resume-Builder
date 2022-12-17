@@ -10,7 +10,7 @@ import { MdOutlineWorkOutline } from "react-icons/md"
 import { HiOutlineAcademicCap, HiOutlinePuzzle } from "react-icons/hi"
 import { IoConstructOutline } from "react-icons/io5"
 import { RiMedalLine } from 'react-icons/ri'
-import {TbExternalLink} from "react-icons/tb"
+import { TbExternalLink } from "react-icons/tb"
 import BounceLoader from "react-spinners/BounceLoader"
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -20,10 +20,10 @@ import { useSelector } from 'react-redux'
 function Modern() {
     const navigate = useNavigate()
     const userdata = useSelector(state => state.user.userdata)
-    const themeclr = useSelector(state => state.theme?.theme?.color)||"#643baa"
+    const themeclr = useSelector(state => state.theme?.theme?.color) || "#643baa"
     const [loading, setLoading] = useState(true);
     const [loadhint, setloadhint] = useState("")
-    const [skillstyle,Setskillstyle]=useState("style1")
+    const [skillstyle, Setskillstyle] = useState("style1")
 
     const loadFunc = () => {
         const hints = ["Please wait your resume is in process...", "Hint: Entering the complete details will make your resume looks awesome"]
@@ -116,9 +116,14 @@ function Modern() {
                                     <React.Fragment key={index}>
                                         <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white", "padding": "10px 10px 0", "textAlign": "end" }}>{item.yearfrom} - {item.present === true ? "Present" : item.yearto}</div>
                                         <div className='theme5-content-sec'>
-                                            <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.worktitle}</div>
-                                            <div className={"mt-1"} style={{ "fontSize": "14px" }}>{item.company}</div>
-                                            <div>{item.description}</div>
+                                            <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.worktitle} - <span style={{ "fontSize": "14px", "fontWeight": "400" }}>{item.company}</span></div>
+                                            {item.tags ? <>
+                                                <div className={"mt-1"}>{item.description}</div>
+                                                <div className={"text-xs"} style={{ "color": themeclr }}>{item.tags}</div>
+                                            </> :
+                                            <>
+                                                <div className={"mt-1"}>{item.description}</div>
+                                            </>}
                                         </div>
                                     </React.Fragment>
                                 )
@@ -138,14 +143,14 @@ function Modern() {
                                 return (
                                     <React.Fragment key={index}>
                                         <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white", "padding": "10px 10px 0" }}>
-                                            <div style={{"display":"flex","justifyContent":"flex-end"}}>
-                                                {item.link && <a href={item.link} target={"_blank"} rel="noopener noreferrer" style={{"width":"max-content","display":"flex","alignItems":"center","justifyContent":"flex-end","gap":"5px"}} className={"italic"}>Link<TbExternalLink/></a>}
+                                            <div style={{ "display": "flex", "justifyContent": "flex-end" }}>
+                                                {item.link && <a href={item.link} target={"_blank"} rel="noopener noreferrer" style={{ "width": "max-content", "display": "flex", "alignItems": "center", "justifyContent": "flex-end", "gap": "5px" }} className={"italic"}>Link<TbExternalLink /></a>}
                                             </div>
                                         </div>
                                         <div className='theme5-content-sec'>
                                             <div style={{ "fontWeight": "bold", "fontSize": "14px" }}>{item.name}</div>
                                             <div className={"mt-1 text-xs"} style={{ "color": themeclr }}>{item.tech}</div>
-                                            {item.des?<div className={'mt-1'}>{item.des}</div>:null}
+                                            {item.des ? <div className={'mt-1'}>{item.des}</div> : null}
                                         </div>
                                     </React.Fragment>
                                 )
@@ -206,14 +211,14 @@ function Modern() {
                             <div className='theme5-head-sec'>
                                 <div style={{ "backgroundColor": themeclr }}><HiOutlinePuzzle style={{ "color": "white", "fontSize": "18px" }} /></div>
                                 <div className='theme5-head' style={{ "color": themeclr }}>
-                                     SKILLS
-                                     <button className='btn-noprint' style={{"marginLeft":"10px","padding":"1px 3px","fontSize":"13px","backgroundColor":themeclr,"color":"white","borderRadius":"4px","fontWeight":"400"}} onClick={()=>Setskillstyle((prev)=>prev==="style1"?"style2":"style1")}>Change Look</button>
+                                    SKILLS
+                                    <button className='btn-noprint' style={{ "marginLeft": "10px", "padding": "1px 3px", "fontSize": "13px", "backgroundColor": themeclr, "color": "white", "borderRadius": "4px", "fontWeight": "400" }} onClick={() => Setskillstyle((prev) => prev === "style1" ? "style2" : "style1")}>Change Look</button>
                                 </div>
                             </div>
 
                             <div className={"text-xs"} style={{ "backgroundColor": themeclr, "color": "white" }}></div>
                             <div className='theme5-content-sec'>
-                                {skillstyle==="style1"?<div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", "rowGap": "5px", "columnGap": "10px" }}>
+                                {skillstyle === "style1" ? <div style={{ "display": "grid", "gridTemplateColumns": "auto 1fr", "alignItems": "center", "rowGap": "5px", "columnGap": "10px" }}>
                                     {userdata.personal.technicalskill.map((item, index) => {
                                         return (
                                             <React.Fragment key={index}>
@@ -224,18 +229,18 @@ function Modern() {
                                             </React.Fragment>
                                         )
                                     })}
-                                </div>:
+                                </div> :
 
-                                <div style={{"display":"grid","gridTemplateColumns":"repeat(3,1fr)", "rowGap":"5px"}}>
-                                    {userdata.personal.technicalskill.map((item,index)=>{
-                                        return(
-                                            <div key={index}>
-                                                <div style={{"color":themeclr,"fontSize":"14px"}}>{item.skill}</div>
-                                                <div className={"text-xs"} >{item.rate>=10?"Advanced":(item.rate<5?"Beginner":"Intermediate")}</div>
-                                            </div>
-                                        )
-                                    })}
-                                </div>}
+                                    <div style={{ "display": "grid", "gridTemplateColumns": "repeat(3,1fr)", "rowGap": "5px" }}>
+                                        {userdata.personal.technicalskill.map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div style={{ "color": themeclr, "fontSize": "14px" }}>{item.skill}</div>
+                                                    <div className={"text-xs"} >{item.rate >= 10 ? "Advanced" : (item.rate < 5 ? "Beginner" : "Intermediate")}</div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>}
                             </div>
 
                         </div>
