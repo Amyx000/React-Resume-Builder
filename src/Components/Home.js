@@ -14,7 +14,7 @@ function Home() {
     <>
       <Header handleclick={scrollFunc} />
 
-      <div className="heading">Resume Builder</div>
+      <div className="heading">Resumact</div>
       <div className="home-main">
         <div className="home-head">Get your developer style resume ready with React Resume Builder</div>
         <div>
